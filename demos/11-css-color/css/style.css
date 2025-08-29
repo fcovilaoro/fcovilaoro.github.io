@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+#first-paragraph {
+    color: #2e2e6f;
+}
+
+#second-paragraph {
+    background-color: #ffc0cb;
+    color: #cd2e2e;
+}
+
+#span-1 {
+    color: #db5f13;
+}
+
+#span-2 {
+    color: #18b99c;
+    background-color:yellowgreen 
+}

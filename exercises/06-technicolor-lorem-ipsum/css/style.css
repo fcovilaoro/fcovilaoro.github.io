@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+#first-paragraph {
+    background-color: #d8a82d;
+    color: #706d41
+}
+
+#span-1 {
+    background-color: #f1a1a1;
+    color: #660404;
+}
+
+#span-2 {
+    background-color: #e47953;
+    color: #763f18;
+}
+
+#second-paragraph {
+    background-color: blanchedalmond;
+    color: #72860c;
+}
+
+#span-3 {
+    background-color: greenyellow;
+    color: green;
+}
+
+#span-4 {
+    background-color: #575790;
+    color: #0000309c;
+}
+
+#third-paragraph {
+    background-color: #318e0d;
+    color: #132906
+}
+
+#span-5 {
+    background-color: #ababc8;
+    color: rgb(65, 65, 107);
+}
+
+#span-6 {
+    background-color:grey;
+    color:#f1a1a1;
+}
