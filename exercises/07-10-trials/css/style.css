@@ -62,12 +62,18 @@ body {
     font-size: 36px;
 }
 
-#span-15 {
+#div-1 {
     font-size: 12px;
     text-align: center;
 }
 
-#span-16 {
+#div-2 {
     font-size: 48px;
     text-align: center;
+}
+
+#div-3 {
+    font-size: 24px;
+    text-align: center;
+    font-style: italic;
 }
