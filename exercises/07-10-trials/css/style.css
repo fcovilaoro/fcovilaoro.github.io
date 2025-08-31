@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+#trial-1 {
+    color: green;
+}
+
+#span-1 {
+    color: #F711F7;
+}
+
+#span-2 {
+    color: #F711F7;
+}
+
+#span-3 {
+    color: red;
+}
+
+#span-4 {
+    color: darkgoldenrod;
+}
+
+#span-5 {
+    color: blue;
+}
+
+#trial-4 {
+    background-color: skyblue;
+}
+
+#span-6 {
+    background-color: yellow;
+}
+
+#span-7,
+#span-8 {
+    font-weight: bold;
+}
+
+#span-9,
+#span-11 {
+    font-style: italic;
+}
+
+#span-10 {
+    font-weight: bold;
+}
+
+#span-12,
+#span-13 {
+    text-decoration: underline ;
+}
+
+#span-14 {
+    font-size: 36px;
+}
+
+#span-15 {
+    font-size: 12px;
+    text-align: center;
+}
+
+#span-16 {
+    font-size: 48px;
+    text-align: center;
+}
