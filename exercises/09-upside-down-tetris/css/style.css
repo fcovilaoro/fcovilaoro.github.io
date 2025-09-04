@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+#container {
+    width: 500px;
+    min-height: 100vh;
+    background-color: #082231;
+    font-size: 0px;
+
+}
+
+.block {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #082231;
+}
+
+.red {
+    background-color: #572222;
+    border: 15px outset darkred;
+}
+
+.yellow {
+    background-color: rgb(183, 159, 20);
+    border: 15px outset darkgoldenrod;
+}
+
+.green {
+    background-color: rgb(39, 103, 39);
+    border: 15px outset #1d9725;
+}
+
+.blue {
+    background-color: rgb(39, 39, 151);
+    border: 15px outset #1212c2;
+}
+
+.purple {
+    background-color: rgb(130, 33, 130);
+    border: 15px outset darkorchid
+
+}
+
+
