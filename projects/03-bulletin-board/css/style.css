@@ -1,5 +1,5 @@
 .post-it {
-    background-color: #6ca1e6;
+    background-color: #82b2f1;
     display: inline-block;
     width: 160px;
     height: 200px;
@@ -12,6 +12,52 @@
     box-shadow: 2px 4px #564949;
 }
 
-.post-it yellow {
-    background-color: #adad47;
+.yellow {
+    background-color: #dfdf64;
+    transform: rotate(-5deg);
+    margin: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.image {
+    width: 210px;
+    height: 270px;
+    background-color: rgb(240, 239, 239);
+    transform: none;
+}
+
+.post-it img {
+    width: 180px;
+    height: 190px;
+    object-fit: cover;
+    margin: -8px;
+}
+
+.green {
+    background-color: #b1f053;
+    transform: rotate(-3deg);
+    margin: 100px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.post-it h2 {
+    transform: rotate(-40deg);
+}
+.pink {
+    background-color: #fa758b;
+    margin: 60px;
+}
+
+.image-2 {
+    width: 210px;
+    height: 270px;
+    background-color: rgb(240, 239, 239);
+    transform: none;
+}
+
+.post-it img {
+    width: 180px;
+    height: 190px;
+    object-fit: cover;
+    margin: -8px;
 }
