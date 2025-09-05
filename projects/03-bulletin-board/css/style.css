@@ -1,0 +1,17 @@
+.post-it {
+    background-color: #6ca1e6;
+    display: inline-block;
+    width: 160px;
+    height: 200px;
+    font-family: cursive;
+    margin: 24px;
+    padding: 24px;
+    vertical-align: top;
+    text-align: center;
+    transform: rotate(5deg);
+    box-shadow: 2px 4px #564949;
+}
+
+.post-it yellow {
+    background-color: #adad47;
+}
