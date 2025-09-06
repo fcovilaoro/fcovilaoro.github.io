@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+div {
+    margin: 60px;
+    border: 5px solid #86a365;
+    padding: 24px 24px 100px 24px;
+    border-radius: 8%;
+    background-color: #d5e3c5;
+}
+
+img {
+    margin: 60px;
+    border: 5px solid black;
+    width: 250px;
+    border-radius: 40px 70px;
+}
+
+#div-2 {
+    margin: 30px;
+    border: 10px solid white;
+    padding: 40px;
+    background-color: #8994ea;
+}
+
+#div-3 {
+    margin: 20px;
+    
+}
