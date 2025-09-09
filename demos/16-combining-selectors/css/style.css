@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+#navbar {
+    text-align: center;
+    padding: 24px;
+    background-color: blue;
+    
+}
+/* Descendant Selector */
+#navbar a {
+    color: white;
+    text-decoration: none;
+}
+/* Descendnt Selector */
+p a{
+    color: teal;
+}
+/* Compound Selector */
+p.warning {
+    background-color: crimson;
+}
+/* Combined Compound Selector and Descendant Selector */
+p.warning a {
+    color: orange;
+}
