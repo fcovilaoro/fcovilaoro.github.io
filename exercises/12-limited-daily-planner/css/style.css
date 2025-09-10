@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+#morning,
+#afternoon,
+#evening, 
+li {
+    padding: 5px;
+}
+
+div {
+    max-width: 700px;
+}
+
+#morning {
+    border: 5px solid #b9f6ff;
+    background-color: #85e2f0;
+    margin: 30px;
+    padding: 15px 30px;
+    border-radius: 20px;
+}
+
+#morning ul {
+    border: 5px solid #b9f6ff;
+    border-radius: 20px;
+    background-color: #b9f6ff;
+    padding: 10px 30px;
+}
+
+#morning .buttom {
+    display: inline-block;
+    background-color: #67cb5a;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 30px;
+    margin: 10px;
+}
+
+#morning .completed {
+    text-decoration: line-through;
+}
+
+#morning .important {
+    font-weight: bold;
+    color: #cb2b2b;
+}
+
+#afternoon {
+    border: 5px solid #b8cbef;
+    background-color: #85aaf0;
+    margin: 30px;
+    padding: 15px 30px;
+    border-radius: 20px;
+}
+
+#afternoon ul {
+    border: 5px solid #b8cbef;
+    border-radius: 20px;
+    background-color: #b8cbef;
+    padding: 10px 30px;
+}
+
+#afternoon .buttom {
+    display: inline-block;
+    background-color: #67cb5a;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 30px;
+    margin: 10px;
+}
+
+#afternoon .completed {
+    text-decoration: line-through;
+}
+
+#afternoon .important {
+    font-weight: bold;
+    color: #cb2b2b;
+}
+
+#afternoon .important.completed {
+    font-weight: bold;
+    color: #cb2b2b;
+    background-color: #daddae;
+}
+
+#evening {
+    border: 5px solid #efb8be;
+    background-color: #f08585;
+    margin: 30px;
+    padding: 15px 30px;
+    border-radius: 20px;
+}
+
+#evening ul {
+    border: 5px solid #efb8be;
+    border-radius: 20px;
+    background-color: #efb8be;
+    padding: 10px 30px;
+}
+
+#evening .buttom {
+    display: inline-block;
+    background-color: #67cb5a;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 30px;
+    margin: 10px;
+}
+
+#evening .completed {
+    text-decoration: line-through;
+}
+
+#evening .important {
+    font-weight: bold;
+    color: #cb2b2b;
+}
