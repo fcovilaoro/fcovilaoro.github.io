@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+    background: linear-gradient(45deg, #979764, #0e3d55);
+    padding: 50px;
+}
+
+.column {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #72a4b9;
+    border: 5px solid #417870;
+}
+
+.content {
+    padding: 30px;
+    color: white;
+}
+
+.column .content h3 {
+    font-style: italic;
+    display: inline;
+}
+
+img {
+    width: 640px;
+    object-fit: cover;
+    padding-top: 30px;
+}
