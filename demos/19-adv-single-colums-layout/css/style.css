@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Sixtyfour+Convergence&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+.single-column {
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: #d6cfa9; */
+}
+
+.light-outer-container {
+    background-color: #efe2c1;
+    padding: 40px 20px;
+}
+
+.dark-outer-container {
+    background-color: #f5b259;
+    padding: 40px 20px;
+}
+
+h2 {
+    font-family: "Michroma", sans-serif;
+}
+
+p {
+    font-family: "Sixtyfour Convergence", sans-serif;
+}
