@@ -12,7 +12,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     color: black;
-    background-color: aquamarine;
+    background-color: #f6f4f4;
 }
 
 .background-color {
@@ -30,7 +30,28 @@ h3 {
 .text-overlay {
     position: absolute;
     top: 10%;
-    
+    left: 45%;
     text-align: left;
     text-align: center;
+}
+
+p {
+    padding: 20px;
+    font-size: small;
+}
+
+.button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    margin-left: 45px;
+    padding: 10px 20px;
+    border: 1px solid ;
+    border-radius: 5px;
+    left: ;
+}
+
+.button.shop {
+    padding: 10px 45px;
 }
