@@ -24,8 +24,12 @@ body {
     background-color: white;
 }
 
-.background-color {
-    background-color: black;
+.background-color-1 {
+    background-color: #f6f4f4;
+}
+
+.background-color-2 {
+    background-color: white;
 }
 
 img {
