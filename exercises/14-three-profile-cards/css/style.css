@@ -7,3 +7,47 @@ body {
     font-family: sans-serif;
 }
 
+#single-column {
+    max-width: 300px;
+    margin: 300px;
+}
+
+#card-container {
+    display: flex;
+    gap: 40px;
+}
+
+.card {
+    border: 8px solid #8f5a5a;
+    padding: 50px;
+    text-align: center;
+    margin: 50px 0px;
+    border-radius: 10px;
+}
+
+.card h3 {
+    font-size: 30px;
+    margin: 10px;
+}
+
+.card p {
+    font-size: 20px;
+    margin: 50px 0px 0px;
+}
+
+.card a {
+    text-decoration: none;
+    display: inline-block;
+    background-color: #8f5a5a;
+    color: white;
+    margin: 50px 10px 10px;
+    padding: 5px 70px;
+    font-size: 25px;
+    border-radius: 5px;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
