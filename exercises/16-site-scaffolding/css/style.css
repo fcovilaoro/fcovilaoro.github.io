@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+#navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d4c3a8;
+}
+
+#navbar #logo-container {
+    margin-right: 400px;
+    color: #452f0c;
+}
+
+#navbar a {
+    text-decoration: none;
+    color: #452f0c;
+    font-weight: bold;
+    padding: 30px;
+}
+
+#navbar .button {
+    display: inline-block;
+    background-color: #452f0c;
+    color: white;
+    margin: 20px;
+    padding: 20px 40px;
+    border-radius: 80px;
+}
