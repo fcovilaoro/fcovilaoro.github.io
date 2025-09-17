@@ -34,3 +34,7 @@ body {
     padding: 20px 40px;
     border-radius: 80px;
 }
+
+.title {
+    text-align: center;
+}
