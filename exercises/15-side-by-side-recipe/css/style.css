@@ -8,7 +8,7 @@ body {
 }
 
 #single-column-layout {
-    max-width: 100px;
+    max-width: 800px;
     margin: 50px auto;
 }
 
@@ -18,7 +18,7 @@ body {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     padding: 40px;
-    margin: 40px 500px;
+    margin: 40px;
 }
 
 #recipe-intro .image img {
@@ -49,7 +49,7 @@ a {
     display: flex;
     align-items: center;
     width: 50px 200px;
-    margin: 20px 500px;
+    margin: 20px;
 }
 
 #three-cards .card {
