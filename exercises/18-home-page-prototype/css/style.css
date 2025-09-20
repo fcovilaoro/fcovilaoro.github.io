@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+#navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d4c3a8;
+    font-family: "Host Grotesk", sans-serif;
+}
+
+#navbar #logo-container {
+    margin-right: 400px;
+    color: #452f0c;
+}
+
+#navbar a {
+    text-decoration: none;
+    color: #452f0c;
+    font-weight: bold;
+    padding: 30px;
+}
+
+#navbar .button {
+    display: inline-block;
+    background-color: #452f0c;
+    color: white;
+    margin: 20px;
+    padding: 20px 40px;
+    border-radius: 80px;
+}
+
+.title {
+    text-align: center;
+}
+
+#side-hero {
+    background-image: url("../images/pottery-4618917_640.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8%;
+}
+
+.hero-content h1 {
+    font-size: 3.5vw;
+}
+
+.hero-content h3 {
+    font-size: 2vw;
+}
