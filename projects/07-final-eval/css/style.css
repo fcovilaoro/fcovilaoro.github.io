@@ -7,3 +7,45 @@ body {
     font-family: sans-serif;
 }
 
+#single-column-layout {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 20px;
+
+    border: 3px solid black;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card-container .card {
+    width: 160px;
+}
+
+.card-container .card img {
+    width: 120px;
+    height: auto;
+}
+
+#single-column-layout h4 {
+    margin: 0px;
+}
+
+#single-column-layout a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: rgb(21, 75, 98);
+    padding: 10px 20px;
+    border: 3px solid rgb(140, 57, 57);
+    margin: 20px;
+}
+
+#single-column-layout .buttons {
+    margin: 36px;
+}
