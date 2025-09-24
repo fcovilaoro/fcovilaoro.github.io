@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -5,5 +7,44 @@
 body {
     margin: 0px;
     font-family: sans-serif;
+    background-color: #d4c5aa;
 }
 
+#hero {
+    background-image: url("../images/f.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.hero-content h1 {
+    max-width: 400px;
+    font-size: 2rem;
+    text-align: left;
+    font-family: "Limelight", sans-serif;
+}
+
+.gallery-layout {
+    background-color: #000000;
+    max-width: 1000px;
+    text-align: center;
+    margin: 50px auto;
+    padding: 24px;
+}
+
+.gallery-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.gallery-content img {
+    height: 250px;
+    flex: 1;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
