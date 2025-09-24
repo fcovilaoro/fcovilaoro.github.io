@@ -22,8 +22,8 @@ body {
 }
 
 .hero-content h1 {
-    max-width: 400px;
-    font-size: 2rem;
+    max-width: 680px;
+    font-size: 3vw;
     text-align: left;
     font-family: "Limelight", sans-serif;
 }
