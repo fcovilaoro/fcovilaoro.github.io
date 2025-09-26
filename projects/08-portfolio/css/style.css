@@ -59,6 +59,7 @@ h3  {
     font-family: "Oswald", sans-serif;
 }
 
+
 .gallery {
     max-width: 1000px;
     margin: 100px auto;
@@ -99,6 +100,10 @@ h3  {
 .card-container i {
     margin: 10px;
     color: #b88f1f;
+}
+
+.card-container h3 {
+    font-size: 24px;
 }
 
 @media screen and (max-width: 590px) {
