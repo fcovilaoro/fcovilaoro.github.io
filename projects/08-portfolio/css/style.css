@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -22,8 +24,9 @@ body {
 }
 
 #hero {
-    background-image: linear-gradient(to left, rgba(0,0,0,0.9), transparent),
-    url("../images/urban-hi-res-2nse.jpg");
+    background-image: 
+        linear-gradient(to left, rgba(0,0,0,0.9), transparent),
+        url("../images/urban-hi-res-2nse.jpg");
     background-position: center center;
     background-size: cover;
     height: 100vh;
@@ -51,6 +54,11 @@ body {
     padding: 10px 30px;
 }
 
+h1,
+h3  {
+    font-family: "Oswald", sans-serif;
+}
+
 .gallery {
     max-width: 1000px;
     margin: 100px auto;
@@ -72,13 +80,12 @@ body {
 #card {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin: 0px 430px;
 }
 
 .card-container {
     background-color: #212121;
-    max-width: 400px;
+    max-width: 295px;
+    flex: 0 0 400px;
     color: white;
     padding: 30px;
     margin: 30px;
@@ -94,14 +101,18 @@ body {
     color: #b88f1f;
 }
 
-@media screen and (max-width: 440px) {
-    #nav {
+@media screen and (max-width: 590px) {
+    #navbar {
         flex-direction: column;
         align-items: center;
     }
+
 }
 
-@media (min-width: 1201px) {
-    
+@media (max-width: 1001px) {
+    #card {
+        flex-direction: column;
+        align-items: center;
+    }
 }
     
