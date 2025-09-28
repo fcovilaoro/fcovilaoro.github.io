@@ -16,6 +16,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
     border-bottom: 1px solid black;
 }
 
@@ -29,8 +30,8 @@ body {
     font-size: 18px;
 }
 .button i {
-    margin-right: 1vw;
-    margin-left: 1vw;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .product-grid {
@@ -50,10 +51,6 @@ body {
     text-align: center;
     background: #ffffff;
     flex: 1;
-}
-
-.product i {
-    margin-left: 75%;
 }
 
 .product img {
