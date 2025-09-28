@@ -12,23 +12,10 @@ body {
     /* font-size: 16px; */
 }
 
-@media (min-width: 600px) {
-    .product-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-}
-
-@media (min-width: 1024px) {
-  .product-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-}
-
 #header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
     border-bottom: 1px solid black;
 }
 
@@ -42,13 +29,14 @@ body {
     font-size: 18px;
 }
 .button i {
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 1em;
+    margin-left: 1em;
+    font-size: 1.5rem;
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr); 
     margin-top: 60px;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -65,6 +53,10 @@ body {
     flex: 1;
 }
 
+.product i {
+    font-size: 1em;
+}
+
 .product img {
     width: 100%;
     height: auto;
@@ -74,4 +66,16 @@ body {
 
 .product h3 {
     font-family: "Atkinson Hyperlegible Mono", sans-serif;
+}
+
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr); 
+  }
 }
