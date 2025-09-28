@@ -34,6 +34,34 @@ body {
     margin-left: 5px;
 }
 
+.nav-menu {
+    display: inline-block;
+    align-items: center;
+}
+
+.nav-menu a {
+    color: black;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Hamburger hidden on desktop */
+.nav-menu .hamburger {
+    display: none;
+    font-size: 24px;
+}
+
 .product-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
@@ -74,4 +102,27 @@ body {
   .product-grid {
     grid-template-columns: repeat(4, 1fr); 
   }
+}
+
+/* Mobile menu */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* below header */
+        right: 10px;
+        background: white;
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-menu .hamburger {
+        display: block;
+        cursor: pointer;
+    }
 }

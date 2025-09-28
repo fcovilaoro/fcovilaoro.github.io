@@ -19,10 +19,20 @@
         <!-- HEADER -->
         <div id="header">
             <div class="nav-left">
-                <a href="#" class="button"><i class="fa-regular fa-bars"></i></a>
-                <a href="#" class="button"><i class="fa-regular fa-magnifying-glass"></i></a>
+                <div class="nav-menu">
+                    <ul class="nav-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <a href="#" class="hamburger"><i class="fa-regular fa-bars"></i></a>
+                </div>
+            <a href="#" class="button"><i class="fa-regular fa-magnifying-glass"></i></a>
+
             </div>
             <h2>Caractère</h2>
+
             <div class="nav-right">
                 <a href="#" class="button"><i class="fa-regular fa-bookmark"></i></a>
                 <a href="#" class="button"><i class="fa-regular fa-cart-shopping"></i></a>
@@ -102,5 +112,15 @@
                 <p>$ 2150</p>
             </div>
         </div>
+
+        <script>
+            const hamburger = document.querySelector('.nav-menu .hamburger');
+            const navLinks = document.querySelector('.nav-menu .nav-links');
+
+        hamburger.addEventListener('click', (e) => {
+            e.preventDefault();
+            navLinks.classList.toggle('show');
+        });
+        </script>
     </body>
 </html>
