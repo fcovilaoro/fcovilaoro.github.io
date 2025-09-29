@@ -20,17 +20,24 @@
         <div id="header">
             <div class="nav-left">
                 <div class="nav-menu">
-                    <ul class="nav-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
+                    <div class="mobile-menu">
+                        <a href="#" class="close-menu"><i class="fa-regular fa-xmark"></i></a>
+                        <ul class="nav-links">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Hamburger always visible on mobile -->
                     <a href="#" class="hamburger"><i class="fa-regular fa-bars"></i></a>
                 </div>
-            <a href="#" class="button"><i class="fa-regular fa-magnifying-glass"></i></a>
 
+                <!-- Search icon -->
+                <a href="#" class="button"><i class="fa-regular fa-magnifying-glass"></i></a>
             </div>
+
             <h2>Caractère</h2>
 
             <div class="nav-right">
@@ -115,11 +122,18 @@
 
         <script>
             const hamburger = document.querySelector('.nav-menu .hamburger');
-            const navLinks = document.querySelector('.nav-menu .nav-links');
+            const mobileMenu = document.querySelector('.nav-menu .mobile-menu');
 
         hamburger.addEventListener('click', (e) => {
             e.preventDefault();
-            navLinks.classList.toggle('show');
+            mobileMenu.classList.add('show'); // show menu
+        });
+
+        const closeMenu = document.querySelector('.close-menu');
+
+        closeMenu.addEventListener('click', (e) => {
+            e.preventDefault();
+            mobileMenu.classList.remove('show'); // hide menu
         });
         </script>
     </body>
