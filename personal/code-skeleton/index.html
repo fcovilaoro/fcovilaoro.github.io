@@ -5,8 +5,84 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link href="css/style.css" rel="stylesheet">
+        <link 
+            rel="stylesheet" 
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
+            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"
+        >
     </head>
     <body>
-        
+        <header id="header">
+            <div class="nav-left">
+                <a href="#" class="hamburger"><i class="fa-solid fa-bars"></i></a>
+
+                <!-- Fullscreen mobile menu -->
+                <nav class="mobile-menu">
+                    <a href="#" class="close-menu"><i class="fas fa-times"></i></a>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Collections</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <a href="#" class="search"><i class="fa-solid fa-magnifying-glass"></i></a>
+            </div>
+
+            <h2 class="logo">Personage</h2>
+
+            <div class="nav-right">
+                <a href="#" class="button"><i class="fa-regular fa-bookmark"></i></a>
+                <a href="#" class="button"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </header>
+
+        <div class="search-section">
+            <div class="search-box">
+                <a href="#" class="search-icon-desktop"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <input type="text" placeholder="WHAT ARE YOU LOOKING FOR">
+            </div>
+        </div>
+
+        <script>
+            const menuToggle = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
+
+            menuToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                mobileMenu.classList.add('show');
+            });
+
+            closeMenu.addEventListener('click', (e) => {
+                e.preventDefault();
+                mobileMenu.classList.remove('show');
+            });
+
+            // Mobile search toggle
+            const mobileSearchIcon = document.querySelector('#header .search');
+            const searchSection = document.querySelector('.search-section');
+
+            mobileSearchIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (window.innerWidth < 972) {
+                    searchSection.style.display = searchSection.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+
+            // Responsive behavior on resize
+            window.addEventListener('resize', () => {
+            if (window.innerWidth >= 972) {
+                searchSection.style.display = 'block';
+            } else {
+                searchSection.style.display = 'none';
+            }
+        });
+        </script>
+
     </body>
 </html>
