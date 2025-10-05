@@ -44,7 +44,8 @@
         <div class="search-section">
             <div class="search-box">
                 <a href="#" class="search-icon-desktop"><i class="fa-solid fa-magnifying-glass"></i></a>
-                <input type="text" placeholder="WHAT ARE YOU LOOKING FOR">
+                <input type="text" placeholder="WHAT ARE YOU LOOKING FOR ?">
+                <a href="#" class="close-search"><i class="fas fa-times"></i></a>
             </div>
         </div>
 
@@ -69,19 +70,37 @@
 
             mobileSearchIcon.addEventListener('click', (e) => {
                 e.preventDefault();
+
                 if (window.innerWidth < 972) {
-                    searchSection.style.display = searchSection.style.display === 'block' ? 'none' : 'block';
+                // Show the search section
+                searchSection.style.display = 'block';
+
+                // Hide the header search icon
+                mobileSearchIcon.style.display = 'none';
                 }
             });
+
+             // Optional: close button inside search section
+            const closeSearch = document.querySelector('.close-search'); // your close button inside search section
+
+            if (closeSearch) { // check if element exists
+                closeSearch.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    searchSection.style.display = 'none';
+                    mobileSearchIcon.style.display = 'inline-block'; // show icon again
+                });
+            }
 
             // Responsive behavior on resize
             window.addEventListener('resize', () => {
             if (window.innerWidth >= 972) {
                 searchSection.style.display = 'block';
+                mobileSearchIcon.style.display = 'none';
             } else {
                 searchSection.style.display = 'none';
+                mobileSearchIcon.style.display = 'inline-block';
             }
-        });
+            });
         </script>
 
     </body>
