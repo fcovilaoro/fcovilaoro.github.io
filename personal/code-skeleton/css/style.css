@@ -189,12 +189,12 @@ body {
   }
 
   .search-section {
-        display: block; /* show automatically on desktop */
-    }
+    display: block; /* show automatically on desktop */
+  }
 
-    .search {
-        display: none; /* hide header search icon */
-        margin-left: 20px;
+  .search {
+    display: none; /* hide header search icon */
+    margin-left: 20px;
     }
 
     .nav-left {

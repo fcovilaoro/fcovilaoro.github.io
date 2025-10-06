@@ -18,10 +18,14 @@ body {
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid black;
+    position: relative;
 }
 
-#header h2 {
+.logo {
     font-family: "Major Mono Display", monospace;
+    position: relative;
+    align-items: center;
+    
 }
 
 .button {
