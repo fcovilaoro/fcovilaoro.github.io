@@ -39,7 +39,6 @@ body {
 .nav-left .search {
     display: inline-block;
     margin-right: 100%;
-    margin-left: 15px;
 }
 
 .nav-right {
@@ -195,6 +194,7 @@ body {
 
     .search {
         display: none; /* hide header search icon */
+        margin-left: 20px;
     }
 
     .nav-left {
