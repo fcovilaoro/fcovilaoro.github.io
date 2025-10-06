@@ -37,7 +37,7 @@
 
             <div class="nav-right">
                 <a href="#" class="button"><i class="fa-regular fa-bookmark"></i></a>
-                <a href="#" class="button"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="button"><i class="fa-solid fa-bag-shopping"></i></a>
             </div>
         </header>
 
@@ -47,6 +47,10 @@
                 <input type="text" placeholder="WHAT ARE YOU LOOKING FOR ?">
                 <a href="#" class="close-search"><i class="fas fa-times"></i></a>
             </div>
+        </div>
+
+        <div class="front-page">
+            <img src="images/IMG_6655.JPG" alt="model standing">
         </div>
 
         <script>
@@ -67,6 +71,7 @@
             // Mobile search toggle
             const mobileSearchIcon = document.querySelector('#header .search');
             const searchSection = document.querySelector('.search-section');
+            const desktopSearchIcon = document.querySelector('.search-icon-desktop');
 
             mobileSearchIcon.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -101,6 +106,19 @@
                 mobileSearchIcon.style.display = 'inline-block';
             }
             });
+            
+            // Desktop search toggle
+            if (desktopSearchIcon) {
+                desktopSearchIcon.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const currentDisplay = window.getComputedStyle(searchSection).display;
+                    if (currentDisplay === 'none') {
+                        searchSection.style.display = 'block';
+                    } else {
+                        searchSection.style.display = 'none';
+                    }
+                });
+            }
         </script>
 
     </body>
