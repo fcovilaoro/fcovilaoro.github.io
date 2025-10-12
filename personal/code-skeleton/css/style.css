@@ -222,3 +222,11 @@ body {
         max-width: 600px;
     }
 }
+
+/* Optional: prevent hover flicker on touch devices */
+@media (hover: none) {
+  a:hover, button:hover {
+    background: none;
+    color: inherit;
+  }
+}
