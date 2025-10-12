@@ -33,7 +33,7 @@
                 <a href="#" class="search"><i class="fa-solid fa-magnifying-glass"></i></a>
             </div>
 
-            <h2 class="logo">Personage</h2>
+            <a href="index.html" class="homepage-button"><h2 class="logo">Personage</h2></a>
 
             <div class="nav-right">
                 <a href="#" class="button"><i class="fa-regular fa-bookmark"></i></a>
@@ -61,6 +61,8 @@
             menuToggle.addEventListener('click', (e) => {
                 e.preventDefault();
                 mobileMenu.classList.add('show');
+                searchSection.style.display = 'none';
+                mobileSearchIcon.style.display = 'inline-block';
             });
 
             closeMenu.addEventListener('click', (e) => {
@@ -71,28 +73,32 @@
             // Mobile search toggle
             const mobileSearchIcon = document.querySelector('#header .search');
             const searchSection = document.querySelector('.search-section');
-            const desktopSearchIcon = document.querySelector('.search-icon-desktop');
+            const closeSearch = document.querySelector('.close-search');
 
             mobileSearchIcon.addEventListener('click', (e) => {
                 e.preventDefault();
 
-                if (window.innerWidth < 972) {
-                // Show the search section
-                searchSection.style.display = 'block';
+                if (window.innerWidth <= 972) {
+                    // Show the search section
+                    searchSection.style.display = 'block';
 
-                // Hide the header search icon
-                mobileSearchIcon.style.display = 'none';
+                    // Hide the header search icon
+                    mobileSearchIcon.style.display = 'none';
+                } else {
+                    searchSection.style.display = 'block';
                 }
             });
 
              // close button inside search section
-            const closeSearch = document.querySelector('.close-search'); // your close button inside search section
+            const closesearch = document.querySelector('.close-search'); // your close button inside search section
 
             if (closeSearch) { // check if element exists
                 closeSearch.addEventListener('click', (e) => {
                     e.preventDefault();
                     searchSection.style.display = 'none';
                     mobileSearchIcon.style.display = 'inline-block'; // show icon again
+                    const searchInput = searchSection.querySelector('input');
+                    searchInput.value = '';
                 });
             }
 
