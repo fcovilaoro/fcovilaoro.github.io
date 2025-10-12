@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Atelier Personnage</title>
+		<link href="css/style.css" rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+	</head>
+	<body>
+		<div id="header-placeholder"></div>
+
+		<div class="search-section">
+			<div class="search-box">
+				<a href="#" class="search-icon-desktop"><i class="fa-solid fa-magnifying-glass"></i></a>
+				<input type="text" placeholder="WHAT ARE YOU LOOKING FOR ?" />
+				<a href="#" class="close-search"><i class="fas fa-times"></i></a>
+			</div>
+		</div>
+
+		<div class="front-page">
+			<img src="images/IMG_6655.JPG" alt="model standing" />
+		</div>
+
+		<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("partials/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+
+                    // Once the header loads, attach your JS for menu & search
+                    const script = document.createElement("script");
+                    script.src = "js/header.js";
+                    document.body.appendChild(script);
+                });
+            });
+        </script>
+	</body>
+</html>
