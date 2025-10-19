@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Atelier Personnage</title>
+		<link href="css/style.css" rel="stylesheet" />
+		<link href="css/shop.css" rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+	</head>
+	<body>
+		<div id="header-placeholder"></div>
+        
+		<div class="section">
+		    <h3>SAVED ITEMS</h3>
+		</div>
+
+        <!-- 👇 Where saved products or message will appear -->
+        <div id="saved-items-container" class="saved-container">
+            <p class="empty-message">Your list is empty.</p>
+        </div>
+
+        <div id="footer-placeholder"></div>
+
+		<script>
+        document.addEventListener("DOMContentLoaded", () => {
+			// Load header
+            fetch("partials/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+
+                    // Once the header loads, attach your JS for menu & search
+                    const script = document.createElement("script");
+                    script.src = "js/header.js";
+                    document.body.appendChild(script);
+                });
+
+				// Load footer
+                fetch("partials/footer.html")
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById("footer-placeholder").innerHTML = data;
+                    // Optional footer script
+                    const script = document.createElement("script");
+                    script.src = "js/footer.js";
+                    document.body.appendChild(script);
+                });
+            });
+        </script>
+
+        <script src="js/saved.js"></script>
+	</body>
+</html>
