@@ -59,11 +59,34 @@
         });
     }
 
+    // ====== CLOSE SEARCH WHEN CLICKING OUTSIDE ======
+    document.addEventListener('click', (e) => {
+        // If the search section is visible...
+        if (searchSection && searchSection.style.display === 'block') {
+
+            // Check if the click happened *outside* of the header and search icons
+            const clickedInsideHeader = e.target.closest('#header');
+            const clickedSearchIcon = e.target.closest('.search') || e.target.closest('.second-search');
+
+            if (!clickedInsideHeader && !clickedSearchIcon) {
+                searchSection.style.display = 'none';
+
+                // Only show mobile search icon on mobile again
+                if (window.innerWidth <= 972 && mobileSearchIcon) {
+                    mobileSearchIcon.style.display = 'inline-block';
+                }
+
+                const searchInput = searchSection.querySelector('input');
+                if (searchInput) searchInput.value = '';
+            }
+        }
+    });
+
     // ====== WINDOW RESIZE BEHAVIOR ======
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 972) {
             // Desktop
-            searchSection.style.display = 'none';
+            searchSection.style.display = 'inline-block';
             mobileSearchIcon.style.display = 'none';
         } else {
             // Mobile

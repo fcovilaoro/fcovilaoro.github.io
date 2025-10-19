@@ -19,9 +19,11 @@ body {
     justify-content: space-between;
     padding: 15px 10px;
     border-bottom: 1px solid black;
-    position: sticky; 
-    top: 0;           
-    z-index: 100;     
+    position: fixed; 
+    left: 0;
+    top: 0; 
+    width: 100%;          
+    z-index: 1000;     
     background: white; 
     transition: all 0.3s ease;
 }
@@ -124,8 +126,8 @@ body {
     width: 100%;
     padding: 16px;
     border-bottom: 1px solid black;
-    position: sticky;
-    top: 63px;
+    position: fixed;
+    top: 8.5%;
     z-index: 999;
     background-color: white;
 }
@@ -163,6 +165,7 @@ body {
 .front-page img {
     object-fit: cover;
     width: 100%;
+    border-bottom: 1px solid black;
 }
 
 /* Hide hamburger and mobile menu on desktop */
