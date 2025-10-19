@@ -162,6 +162,10 @@ body {
     right: 10px;
 }
 
+.front-page {
+    margin-top: 60px;
+}
+
 .front-page img {
     object-fit: cover;
     width: 100%;
