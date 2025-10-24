@@ -125,18 +125,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .search-section {
-    display: none;
     width: 100%;
     padding: 16px;
     border-bottom: 1px solid black;
     position: fixed;
-    top: 8.5%;
+    top: 63px;
     z-index: 999;
     background-color: white;
+    transform: translateY(-100%);
+    pointer-events: none;
+    transition: all 0.3s ease; /* Smooth slide and fade */
 }
 
 .search-section.active {
-    display: block;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 .search-section input {
