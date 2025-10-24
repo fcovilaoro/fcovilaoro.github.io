@@ -31,9 +31,12 @@
                     document.getElementById("header-placeholder").innerHTML = data;
 
                     // Once the header loads, attach your JS for menu & search
-                    const script = document.createElement("script");
-                    script.src = "js/header.js";
-                    document.body.appendChild(script);
+                    // Wait a moment to make sure the header is fully added before loading header.js
+                    setTimeout(() => {
+                        const script = document.createElement("script");
+                        script.src = "js/header.js";
+                        document.body.appendChild(script);
+                    }, 100); // 100 milliseconds = 0.1 second
                 });
 
 				// Load footer
