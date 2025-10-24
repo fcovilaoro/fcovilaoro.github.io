@@ -67,12 +67,13 @@
             // Check if the click happened *outside* of the header and search icons
             const clickedInsideHeader = e.target.closest('#header');
             const clickedSearchIcon = e.target.closest('.search') || e.target.closest('.second-search');
+            const clickedInsideSearch = e.target.closest('.search-section');
 
-            if (!clickedInsideHeader && !clickedSearchIcon) {
+            if (!clickedInsideHeader && !clickedSearchIcon && !clickedInsideSearch) {
                 searchSection.style.display = 'none';
 
                 // Only show mobile search icon on mobile again
-                if (window.innerWidth <= 972 && mobileSearchIcon) {
+                if (window.innerWidth <= 972 && mobileSearchIcon ) {
                     mobileSearchIcon.style.display = 'inline-block';
                 }
 
