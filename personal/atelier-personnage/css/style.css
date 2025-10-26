@@ -1,7 +1,7 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* Global reset */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -17,18 +17,19 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Bodoni Moda SC", serif;
 }
 
+/* Header */
 #header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px 10px;
     border-bottom: 1px solid black;
-    position: fixed; 
+    position: fixed;
+    top: 0;
     left: 0;
-    top: 0; 
-    width: 100%;          
-    z-index: 1000;     
-    background: white; 
+    width: 100%;
+    background: white;
+    z-index: 1000;
     transition: all 0.3s ease;
 }
 
@@ -51,32 +52,32 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-left {
     justify-content: flex-start;
-    flex-wrap: nowrap;
     font-family: "Jost", sans-serif;
-}
-
-.search {
-    display: inline-block;
-    margin-right: 100%;
 }
 
 .nav-right {
     justify-content: flex-end;
 }
 
-.second-search {
-    display: none;
-}
-
 .nav-left i,
 .nav-right i {
     font-size: 18px;
-    margin: 0px 10px;
+    margin: 0 10px;
     cursor: pointer;
     color: black;
 }
 
-/* Hide menu by default */
+/* Search bar */
+.search {
+    display: inline-block;
+    margin-right: 100%;
+}
+
+.second-search {
+    display: none;
+}
+
+/* Mobile menu */
 .mobile-menu {
     position: fixed;
     top: 0;
@@ -87,8 +88,8 @@ h1, h2, h3, h4, h5, h6 {
     color: black;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: flex-start;
+    justify-content: flex-start;
     padding: 80px 30px;
     transform: translateY(-100%);
     transition: transform 0.3s ease;
@@ -110,7 +111,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
 }
 
-/* Close button (X) */
 .close-menu {
     position: absolute;
     top: 20px;
@@ -119,22 +119,22 @@ h1, h2, h3, h4, h5, h6 {
     color: black;
 }
 
-/* When menu is active */
 .mobile-menu.show {
     transform: translateY(0);
 }
 
+/* Search section */
 .search-section {
     width: 100%;
     padding: 16px;
     border-bottom: 1px solid black;
     position: fixed;
     top: 63px;
+    background: white;
     z-index: 999;
-    background-color: white;
     transform: translateY(-100%);
     pointer-events: none;
-    transition: all 0.3s ease; /* Smooth slide and fade */
+    transition: all 0.3s ease;
 }
 
 .search-section.active {
@@ -144,9 +144,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .search-section input {
     width: 100%;
-    outline: none;
     background: transparent;
     border: none;
+    outline: none;
     font-size: 1rem;
     font-family: "Jost", sans-serif;
 }
@@ -168,45 +168,47 @@ h1, h2, h3, h4, h5, h6 {
     right: 10px;
 }
 
+/* Hero / Front Page */
 .front-page {
     position: relative;
     margin-top: 60px;
 }
 
 .front-page .hero-video {
-    object-fit: cover;
     width: 100%;
+    object-fit: cover;
+    position: relative;
 }
 
-.video-text {
+/* Universal adaptive button */
+.btn {
     position: absolute;
     bottom: 40px;
     left: 50%;
-    text-align: center;
     transform: translate(-50%, -50%);
-}
-
-.video-text a {
     display: inline-block;
-    color: white;
+    padding: 0.5vw 4vw;
+    font-size: 2vh;
     text-decoration: none;
     border: 1px solid white;
-    padding: 0.5vw 4vw;
+    color: white;
+    mix-blend-mode: hard-light;
     transition: all 0.3s ease;
-    font-size: 2vh;
 }
 
-.video-text a:hover {
-    background-color: #ffffffa9;
+.btn:hover {
+    background-color: white;
+    mix-blend-mode: exclusion;
     color: black;
-    transition: all 0.3s ease;
+    border-color: white;
 }
 
+/* Grid layout */
 .image-grid {
     display: grid;
     grid-template-columns: 1fr;
-    margin: 50px 0px;
-    gap: 50px 0;
+    gap: 40px 0;
+    margin: 40px 0;
 }
 
 .grid-item {
@@ -216,69 +218,48 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .grid-item img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .match-grid-size {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 3/4; 
-  object-fit: cover;
-  display: block;
-  max-width: 600px; 
-  margin: 0 auto; 
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .second-item {
-    background-color: #ececec;
+    position: relative;
+    background: #ececec;
 }
 
-.grid-item a {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-decoration: none;
-    color: white;
-    border: 1px solid white;
-    padding: 0.5vw 4vw;
-    font-size: 2vh;
-}
-
-.grid-item:hover a:hover {
-    background-color: #ffffffa9;
-    color: black;
-    transition: all 0.3s ease;
-}
-
-/* Hide hamburger and mobile menu on desktop */
+/* Desktop view */
 @media (min-width: 972px) {
     #header {
         justify-content: space-between;
     }
-    
-    #header::after {
-        content: "";
-    }
-    
-    .hamburger {
+
+    .hamburger,
+    .close-menu {
         display: none;
     }
-    
+
     .mobile-menu {
         position: static;
         transform: none;
         display: flex;
+        flex-direction: row;
         background: none;
         height: auto;
-        flex-direction: row;
-        align-items: center;
         padding: 0;
     }
-    
+
     .mobile-menu ul {
         display: flex;
         flex-direction: row;
@@ -287,50 +268,39 @@ h1, h2, h3, h4, h5, h6 {
         padding: 0;
         align-items: center;
     }
-    
+
     .mobile-menu ul li {
         margin: 0;
     }
-    
+
     .mobile-menu ul li a {
         color: black;
         text-decoration: none;
         font-size: 1rem;
     }
-    
-    .close-menu {
-        display: none;
-    }
-    
+
     .search {
         display: none;
-        margin-left: 20px;
     }
-    
+
     .second-search {
         display: inline-block;
     }
-    
-    .nav-left {
-        display: flex;
-        align-items: center;
-    }
-    
+
     .search-icon-desktop {
-        display: inline-block;
         font-size: 18px;
         color: black;
     }
-    
+
     .front-page img {
         display: block;
         width: 60%;
         object-fit: cover;
-        margin: 0px auto;
+        margin: 0 auto;
         max-width: 600px;
     }
 
     .image-grid {
-    grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
