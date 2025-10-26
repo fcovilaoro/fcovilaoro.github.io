@@ -205,8 +205,8 @@ h1, h2, h3, h4, h5, h6 {
 .image-grid {
     display: grid;
     grid-template-columns: 1fr;
-    margin: 40px 40px;
-    gap: 40px;
+    margin: 50px 0px;
+    gap: 50px 0;
 }
 
 .grid-item {
@@ -220,6 +220,20 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   display: block;
   object-fit: cover;
+}
+
+.match-grid-size {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3/4; 
+  object-fit: cover;
+  display: block;
+  max-width: 600px; 
+  margin: 0 auto; 
+}
+
+.second-item {
+    background-color: #ececec;
 }
 
 .grid-item a {
