@@ -1,37 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("saved-items-container");
-  const savedItems = JSON.parse(localStorage.getItem("savedProducts")) || [];
 
-  if (savedItems.length === 0) {
+  // Get saved products from localStorage
+  let savedItems = JSON.parse(localStorage.getItem("savedProducts")) || [];
+
+  // Render empty message
+  function showEmpty() {
     container.innerHTML = `<p class="empty-message">Your list is empty.</p>`;
-    return;
   }
 
-  // Different layout for saved items
-  container.innerHTML = savedItems
-    .map(
-      (item) => `
-      <div class="saved-card">
-        <img src="${item.image}" alt="${item.title}" />
-        <div class="saved-info">
-          <h4>${item.title}</h4>
-          <p>${item.price}</p>
-          <button class="remove-btn" data-title="${item.title}">
-            Remove
-          </button>
-        </div>
-      </div>
-    `
-    )
-    .join("");
+  // Render all saved items
+  function renderList() {
+    if (!savedItems.length) return showEmpty();
 
-  // Remove button functionality
-  document.querySelectorAll(".remove-btn").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const title = e.target.dataset.title;
-      const updatedItems = savedItems.filter((item) => item.title !== title);
-      localStorage.setItem("savedProducts", JSON.stringify(updatedItems));
-      location.reload(); // reload to update view
+    container.innerHTML = savedItems
+      .map((item, index) => `
+        <div class="saved-card">
+          <div class="saved-thumb">
+            <img src="${item.img || item.image}" alt="${item.name || item.title}" />
+          </div>
+          <div class="saved-info">
+            <h4>${item.name || item.title}</h4>
+            <p>${item.price || ""}</p>
+            <button class="remove-btn" data-index="${index}">Remove</button>
+          </div>
+        </div>
+      `)
+      .join("");
+
+    attachRemoveHandlers();
+  }
+
+  // Remove item from list
+  function attachRemoveHandlers() {
+    document.querySelectorAll(".remove-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const index = parseInt(btn.dataset.index);
+        savedItems.splice(index, 1); // Remove only this item
+        localStorage.setItem("savedProducts", JSON.stringify(savedItems));
+        renderList(); // Re-render the list
+      });
     });
-  });
+  }
+
+  // Initial render
+  renderList();
 });

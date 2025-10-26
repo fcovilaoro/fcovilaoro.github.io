@@ -1,6 +1,6 @@
 .section {
     text-align: center;
-    padding-top: 120px;;
+    padding-top: 120px;
     padding-bottom: 20px;
 }
 
@@ -17,42 +17,66 @@
 .product-item {
     text-align: center;
     padding: 20px;
-    background: #ffffff;
+    background: #fff;
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
+    position: relative;
 }
 
-.product-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-.product-item a {
+.product-item .button {
     display: flex;
     justify-content: flex-end;
-    margin-right: 10px;
     font-size: 18px;
     color: black;
+    margin-bottom: 10px;
 }
 
-.product-item h3,
-.product-item p {
-    font-size: 1rem;
+/* --- IMAGE SLIDER --- */
+.image-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
-/* 3 columns on medium screens */
+.image-slider img {
+    width: 100%;
+    display: none;
+    transition: opacity 0.4s ease;
+}
+
+.image-slider img.active {
+    display: block;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    color: black;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.arrow.left {
+    left: 10px;
+}
+
+.arrow.right {
+    right: 10px;
+}
+
+/* --- RESPONSIVE GRID --- */
 @media (min-width: 800px) {
-  .product-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
-/* 4 columns on large screens — no more than that */
 @media (min-width: 1200px) {
-  .product-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }

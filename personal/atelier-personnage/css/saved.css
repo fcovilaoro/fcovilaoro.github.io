@@ -1,48 +1,62 @@
 .section {
-    text-align: center;
-    padding-top: 120px;;
-    padding-bottom: 20px;
+  text-align: center;
+  padding-top: 120px; /* Push below fixed header */
+  padding-bottom: 55px;
+  border-bottom: 1px solid black;
 }
 
 .saved-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 60px 20px;
-  max-width: 800px;
+  
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .saved-card {
   display: flex;
   align-items: center;
-  gap: 20px;
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 8px;
-  background-color: #fafafa;
-  transition: background 0.2s;
+  border-bottom:  1px solid black;
+  padding: 20px;
+  transition: background 0.2s ease;
 }
 
-.saved-card img {
-  width: auto;
+.saved-thumb {
+  width: 120px;
+  height: 120px;
+  flex: 0 0 120px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.saved-thumb img {
+  width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .saved-info h4 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   font-size: 1.1rem;
+  color: black;
+}
+
+.saved-info p {
+  margin: 0 0 10px;
+  color: black;
 }
 
 .remove-btn {
-  margin-top: 8px;
   background: none;
   border: 1px solid #000;
-  padding: 5px 10px;
+  padding: 6px 10px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 
 .remove-btn:hover {
@@ -52,7 +66,7 @@
 
 .empty-message {
   text-align: center;
-  margin-top: 50px;
+  margin: 50% 0;
   color: #777;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
