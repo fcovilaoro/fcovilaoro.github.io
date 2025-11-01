@@ -38,6 +38,17 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
+.bookmark-dot {
+  position: absolute;
+  top: 19px;
+  right: 54px;
+  width: 6px;
+  height: 6px;
+  background: #000000;
+  border-radius: 50%;
+  display: none;
+}
+
 .logo {
     text-align: center;
     line-height: 0.7;
@@ -303,4 +314,8 @@ h1, h2, h3, h4, h5, h6 {
     .image-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .front-page .hero-video {
+        height: 1000px;
+        width: 100%;
 }

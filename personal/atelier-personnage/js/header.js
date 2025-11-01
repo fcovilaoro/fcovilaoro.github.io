@@ -98,3 +98,20 @@ window.addEventListener('scroll', () => {
 		header.classList.remove('scrolled');
 	}
 });
+
+// ====== BOOKMARK DOT NOTIFICATION ======
+document.addEventListener("DOMContentLoaded", () => {
+  const bookmarkDot = document.querySelector(".bookmark-dot");
+
+  if (bookmarkDot) {
+    const saved = JSON.parse(localStorage.getItem("savedProducts")) || [];
+    if (saved.length > 0) {
+      bookmarkDot.style.display = "block";
+    }
+
+    window.addEventListener("storage", () => {
+      const updated = JSON.parse(localStorage.getItem("savedProducts")) || [];
+      bookmarkDot.style.display = updated.length > 0 ? "block" : "none";
+    });
+  }
+});

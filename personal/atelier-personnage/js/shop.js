@@ -24,6 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("savedProducts", JSON.stringify(saved));
                 button.querySelector("i").classList.replace("fa-solid", "fa-regular");
             }
+
+            // 🔴 --- UPDATE HEADER BOOKMARK DOT LIVE ---
+            const bookmarkDot = document.querySelector(".bookmark-dot");
+            if (bookmarkDot) {
+                const updated = JSON.parse(localStorage.getItem("savedProducts")) || [];
+                bookmarkDot.style.display = updated.length > 0 ? "block" : "none";
+            }
         });
     });
 

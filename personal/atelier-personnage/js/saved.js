@@ -11,7 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Render all saved items
   function renderList() {
-    if (!savedItems.length) return showEmpty();
+    if (!savedItems.length) {
+      // ✅ No saved items → remove the indicator from header
+      localStorage.removeItem("hasSavedItems");
+      return showEmpty();
+    }
 
     container.innerHTML = savedItems
       .map((item, index) => `
@@ -38,6 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const index = parseInt(btn.dataset.index);
         savedItems.splice(index, 1); // Remove only this item
         localStorage.setItem("savedProducts", JSON.stringify(savedItems));
+
+        // ✅ If there are no saved items left, remove the dot indicator
+        if (savedItems.length === 0) {
+          localStorage.removeItem("hasSavedItems");
+        }
+
         renderList(); // Re-render the list
       });
     });
