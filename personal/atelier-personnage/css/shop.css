@@ -16,7 +16,7 @@
 
 .product-item {
     text-align: center;
-    padding: 0 0 40px;
+    padding: 0px 0px 40px;
     background: #fff;
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
@@ -32,8 +32,8 @@
     z-index: 10;
 }
 
-/* --- IMAGE SLIDER --- */
 .image-slider {
+    padding: 20px;
     position: relative;
     width: 100%;
     overflow: hidden;
