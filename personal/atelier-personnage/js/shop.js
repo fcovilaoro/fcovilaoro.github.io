@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // --- IMAGE SLIDER ARROWS (with slide animation on desktop) ---
+    // --- IMAGE SLIDER ARROWS (desktop slide) ---
     document.querySelectorAll(".image-slider").forEach(slider => {
         const images = slider.querySelectorAll("img");
 
-        // Create inner container for sliding if it doesn’t exist
+        // Wrap images for desktop sliding
         let inner = slider.querySelector(".image-slider-inner");
         if (!inner) {
             inner = document.createElement("div");
@@ -60,5 +60,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateSlider();
             });
         }
+
+        // --- MOBILE SWIPE LOOPING ---
+        let startX = 0;
+        let endX = 0;
+
+        slider.addEventListener("touchstart", e => {
+            startX = e.touches[0].clientX;
+        });
+
+        slider.addEventListener("touchend", e => {
+            endX = e.changedTouches[0].clientX;
+            const diff = endX - startX;
+
+            // Only trigger if swipe is meaningful
+            if (Math.abs(diff) > 50) {
+                if (diff < 0) {
+                    // Swiped left → next image
+                    current = (current + 1) % images.length;
+                } else {
+                    // Swiped right → previous image
+                    current = (current - 1 + images.length) % images.length;
+                }
+
+                // Smoothly scroll to the new image on mobile
+                slider.scrollTo({
+                    left: current * slider.clientWidth,
+                    behavior: "smooth"
+                });
+            }
+        });
     });
 });
