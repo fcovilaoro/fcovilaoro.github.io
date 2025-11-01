@@ -27,28 +27,37 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // --- IMAGE SLIDER ARROWS ---
+    // --- IMAGE SLIDER ARROWS (with slide animation on desktop) ---
     document.querySelectorAll(".image-slider").forEach(slider => {
         const images = slider.querySelectorAll("img");
+
+        // Create inner container for sliding if it doesn’t exist
+        let inner = slider.querySelector(".image-slider-inner");
+        if (!inner) {
+            inner = document.createElement("div");
+            inner.classList.add("image-slider-inner");
+            images.forEach(img => inner.appendChild(img));
+            slider.prepend(inner);
+        }
+
         let current = 0;
 
-        const showImage = index => {
-            images.forEach((img, i) => img.classList.toggle("active", i === index));
+        const updateSlider = () => {
+            inner.style.transform = `translateX(-${current * 100}%)`;
         };
 
-        // 🔹 Check if arrows exist (only desktop)
         const leftArrow = slider.querySelector(".arrow.left");
         const rightArrow = slider.querySelector(".arrow.right");
 
         if (leftArrow && rightArrow) {
             leftArrow.addEventListener("click", () => {
                 current = (current - 1 + images.length) % images.length;
-                showImage(current);
+                updateSlider();
             });
 
             rightArrow.addEventListener("click", () => {
                 current = (current + 1) % images.length;
-                showImage(current);
+                updateSlider();
             });
         }
     });
