@@ -36,14 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
             images.forEach((img, i) => img.classList.toggle("active", i === index));
         };
 
-        slider.querySelector(".arrow.left").addEventListener("click", () => {
-            current = (current - 1 + images.length) % images.length;
-            showImage(current);
-        });
+        // 🔹 Check if arrows exist (only desktop)
+        const leftArrow = slider.querySelector(".arrow.left");
+        const rightArrow = slider.querySelector(".arrow.right");
 
-        slider.querySelector(".arrow.right").addEventListener("click", () => {
-            current = (current + 1) % images.length;
-            showImage(current);
-        });
+        if (leftArrow && rightArrow) {
+            leftArrow.addEventListener("click", () => {
+                current = (current - 1 + images.length) % images.length;
+                showImage(current);
+            });
+
+            rightArrow.addEventListener("click", () => {
+                current = (current + 1) % images.length;
+                showImage(current);
+            });
+        }
     });
 });
