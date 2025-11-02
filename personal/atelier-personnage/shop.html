@@ -1,124 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Atelier Personnage</title>
-        <link href="css/style.css" rel="stylesheet" />
-        <link href="css/shop.css" rel="stylesheet" />
-        <link 
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-            crossorigin="anonymous"
-        />
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atelier Personnage</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/shop.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
+  </head>
 
-    <body>
-        <div id="header-placeholder"></div>
+  <body>
+    <div id="header-placeholder"></div>
 
-        <div class="section">
-            <h3>READY-TO-WEAR</h3>
+    <div class="section">
+      <h3>READY-TO-WEAR</h3>
+    </div>
+
+    <div class="product-grid">
+      <!-- Product 1 -->
+      <div class="product-item" data-id="P001">
+        <a href="product.html?id=P001" class="button">
+          <i class="fa-regular fa-bookmark"></i>
+        </a>
+
+        <div class="image-slider">
+          <button class="arrow left">&#10094;</button>
+          <img src="images/item9.WEBP" class="active" alt="front" />
+          <img src="images/item8.WEBP" alt="back" />
+          <button class="arrow right">&#10095;</button>
         </div>
 
-        <div class="product-grid">
-            <div class="product-item">
-                <a href="#" class="button">
-                    <i class="fa-regular fa-bookmark"></i>
-                </a>
+        <h3>RELAXED FIT PANTS</h3>
+        <p>$ 1660</p>
+      </div>
 
-                <div class="image-slider">
-                    <button class="arrow left">&#10094;</button>
-                    <img src="images/item9.WEBP" class="active" alt="front" />
-                    <img src="images/item8.WEBP" alt="back" />
-                    <button class="arrow right">&#10095;</button>
-                </div>
+      <!-- Product 2 -->
+      <div class="product-item" data-id="P002">
+        <a href="product.html?id=P002" class="button">
+          <i class="fa-regular fa-bookmark"></i>
+        </a>
 
-                <h3>BOXY JACKET</h3>
-                <p>$ 1660</p>
-            </div>
-
-            <div class="product-item">
-                <a href="#" class="button">
-                    <i class="fa-regular fa-bookmark"></i>
-                </a>
-
-                <div class="image-slider">
-                    <button class="arrow left">&#10094;</button>
-                    <img src="images/tshirt1.WEBP" class="active" alt="front" />
-                    <img src="images/tshirt2.AVIF" alt="back" />
-                    <img src="images/tshirt3.AVIF" alt="side" />
-                    <button class="arrow right">&#10095;</button>
-                </div>
-
-                <h3>BOXY JACKET</h3>
-                <p>$ 1075</p>
-            </div>
-
-            <div class="product-item">
-                <a href="#" class="button">
-                    <i class="fa-regular fa-bookmark"></i>
-                </a>
-
-                <div class="image-slider">
-                    <button class="arrow left">&#10094;</button>
-                    <img src="images/jacket1.AVIF" class="active" alt="front" />
-                    <img src="images/jacket2.AVIF" alt="back" />
-                    <img src="images/jacket3.AVIF" alt="side" />
-                    <button class="arrow right">&#10095;</button>
-                </div>
-
-                <h3>BOXY JACKET</h3>
-                <p>$ 3885</p>
-            </div>
-
-            <div class="product-item">
-                <a href="#" class="button">
-                    <i class="fa-regular fa-bookmark"></i>
-                </a>
-
-                <div class="image-slider">
-                    <button class="arrow left">&#10094;</button>
-                    <img src="images/pants1.WEBP" class="active" alt="front" />
-                    <img src="images/pants2.AVIF" alt="back" />
-                    <img src="images/pants3.AVIF" alt="side" />
-                    <button class="arrow right">&#10095;</button>
-                </div>
-
-                <h3>BOXY JACKET</h3>
-                <p>$ 1620</p>
-            </div>
+        <div class="image-slider">
+          <button class="arrow left">&#10094;</button>
+          <img src="images/tshirt1.WEBP" class="active" alt="front" />
+          <img src="images/tshirt2.AVIF" alt="back" />
+          <img src="images/tshirt3.AVIF" alt="side" />
+          <button class="arrow right">&#10095;</button>
         </div>
 
-        <div id="footer-placeholder"></div>
+        <h3>RAGLAN OVERSIZE T-SHIRT</h3>
+        <p>$ 1075</p>
+      </div>
 
-        <script src="js/shop.js"></script>
+      <!-- Product 3 -->
+      <div class="product-item" data-id="P003">
+        <a href="product.html?id=P003" class="button">
+          <i class="fa-regular fa-bookmark"></i>
+        </a>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                // Load header
-                fetch("partials/header.html")
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById("header-placeholder").innerHTML = data;
+        <div class="image-slider">
+          <button class="arrow left">&#10094;</button>
+          <img src="images/jacket1.AVIF" class="active" alt="front" />
+          <img src="images/jacket2.AVIF" alt="back" />
+          <img src="images/jacket3.AVIF" alt="side" />
+          <button class="arrow right">&#10095;</button>
+        </div>
 
-                        // Once the header loads, attach your JS for menu & search
-                        const script = document.createElement("script");
-                        script.src = "js/header.js";
-                        document.body.appendChild(script);
-                    });
+        <h3>BOXY JACKET</h3>
+        <p>$ 3885</p>
+      </div>
 
-                // Load footer
-                fetch("partials/footer.html")
-                    .then(res => res.text())
-                    .then(data => {
-                        document.getElementById("footer-placeholder").innerHTML = data;
+      <!-- Product 4 -->
+      <div class="product-item" data-id="P004">
+        <a href="product.html?id=P004" class="button">
+          <i class="fa-regular fa-bookmark"></i>
+        </a>
 
-                        // Optional footer script
-                        const script = document.createElement("script");
-                        script.src = "js/footer.js";
-                        document.body.appendChild(script);
-                    });
-            });
-        </script>
-    </body>
+        <div class="image-slider">
+          <button class="arrow left">&#10094;</button>
+          <img src="images/pants1.WEBP" class="active" alt="front" />
+          <img src="images/pants2.AVIF" alt="back" />
+          <img src="images/pants3.AVIF" alt="side" />
+          <button class="arrow right">&#10095;</button>
+        </div>
+
+        <h3>BAGGY PANTS</h3>
+        <p>$ 1620</p>
+      </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Load scripts in the right order -->
+    <script src="js/products.js"></script>
+    <script src="js/shop.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Load header
+        fetch("partials/header.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("header-placeholder").innerHTML = data;
+
+            const script = document.createElement("script");
+            script.src = "js/header.js";
+            document.body.appendChild(script);
+          });
+
+        // Load footer
+        fetch("partials/footer.html")
+          .then((res) => res.text())
+          .then((data) => {
+            document.getElementById("footer-placeholder").innerHTML = data;
+
+            const script = document.createElement("script");
+            script.src = "js/footer.js";
+            document.body.appendChild(script);
+          });
+      });
+    </script>
+  </body>
 </html>

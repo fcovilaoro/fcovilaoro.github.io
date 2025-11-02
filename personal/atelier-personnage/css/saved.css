@@ -101,7 +101,7 @@
   border-bottom: 1px solid black;
   font-size: 0.9rem;
   cursor: pointer;
-  margin: 10px;
+  margin: 30px;
   transition: color 0.2s, border-color 0.2s;
 }
 
