@@ -169,15 +169,6 @@
   transform-origin: top right;
 }
 
-/* responsive small screens */
-@media (max-width: 520px) {
-  .size-dropdown {
-    left: 8px !important;
-    right: 8px !important;
-    width: auto;
-    min-width: unset;
-  }
-}
 
 /* Keep previous panel styles (in case you also use the slide-up panel) */
 .size-panel { display: none; } /* leave existing panel hidden if present */
