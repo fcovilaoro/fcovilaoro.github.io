@@ -96,12 +96,12 @@
 /* Underline buttons (Color / Size) */
 .underline-btn {
   background: none;
+  color: black;
   border: none;
   border-bottom: 1px solid black;
   font-size: 0.9rem;
   cursor: pointer;
-  margin: 6px;
-  padding: 4px 0;
+  margin: 10px;
   transition: color 0.2s, border-color 0.2s;
 }
 
