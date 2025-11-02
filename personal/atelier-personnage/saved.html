@@ -1,55 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Saved Items | Atelier Personnage</title>
-        <link href="css/style.css" rel="stylesheet" />
-        <link href="css/saved.css" rel="stylesheet" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        />
-    </head>
-    <body>
-        <div id="header-placeholder"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saved Items | Atelier Personnage</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/saved.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
 
-        <main class="saved-page">
-            <section class="section">
-                <h3>SAVED ITEMS</h3>
-            </section>
+    <main class="saved-page">
+      <section class="section">
+        <h3>SAVED ITEMS</h3>
+      </section>
 
-            <div id="saved-items-container" class="saved-container">
-                <p class="empty-message">Your list is empty</p>
-            </div>
-        </main>
+      <div id="saved-items-container" class="saved-container">
+        <p class="empty-message">Your list is empty</p>
+      </div>
+    </main>
 
-        <div id="footer-placeholder"></div>
+    <!-- Floating Maison-Margiela-style size dropdown -->
+    <div id="sizeDropdown" class="size-dropdown" aria-hidden="true">
+      <ul class="size-dropdown-list" role="menu" aria-label="Sizes">
+        <li class="disabled" role="menuitem">36 Out of Stock</li>
+        <li class="disabled" role="menuitem">38 Out of Stock</li>
+        <li role="menuitem">40</li>
+        <li role="menuitem">42</li>
+        <li role="menuitem">44</li>
+        <li role="menuitem">46</li>
+        <li role="menuitem">48</li>
+        <li role="menuitem">50</li>
+        <li role="menuitem">52</li>
+        <li role="menuitem">54</li>
+        <li role="menuitem">56</li>
+      </ul>
+    </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                // Load header
-                fetch("partials/header.html")
-                    .then(res => res.text())
-                    .then(html => {
-                        document.getElementById("header-placeholder").innerHTML = html;
-                        const script = document.createElement("script");
-                        script.src = "js/header.js";
-                        document.body.appendChild(script);
-                    });
+    <div id="footer-placeholder"></div>
 
-                // Load footer
-                fetch("partials/footer.html")
-                    .then(res => res.text())
-                    .then(html => {
-                        document.getElementById("footer-placeholder").innerHTML = html;
-                        const script = document.createElement("script");
-                        script.src = "js/footer.js";
-                        document.body.appendChild(script);
-                    });
-            });
-        </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Load header
+        fetch("partials/header.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("header-placeholder").innerHTML = html;
+            const script = document.createElement("script");
+            script.src = "js/header.js";
+            document.body.appendChild(script);
+          });
 
-        <script src="js/saved.js"></script>
-    </body>
+        // Load footer
+        fetch("partials/footer.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("footer-placeholder").innerHTML = html;
+            const script = document.createElement("script");
+            script.src = "js/footer.js";
+            document.body.appendChild(script);
+          });
+      });
+    </script>
+
+    <script src="js/saved.js"></script>
+  </body>
 </html>
