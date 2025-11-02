@@ -72,6 +72,7 @@
   flex: 1;
   border: 1px solid #000;
   background: none;
+  color: black;
   padding: 6px 10px;
   margin: 20px 0;
   cursor: pointer;
@@ -120,11 +121,11 @@
 .size-dropdown {
   position: absolute;       
   display: none;
-  min-width: 160px;
-  background: rgba(47, 47, 47, 0.808);
+  width: 150px;
+  background: #2f2f2fce;
   color: #fff;
   border-radius: 10px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 30px #00000059;
   z-index: 9999;
   overflow: hidden;
   backdrop-filter: blur(6px);
