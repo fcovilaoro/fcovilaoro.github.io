@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <div class="saved-info">
             <h4>${item.name}</h4>
-            <p>$${item.price}</p>
+            <p>${item.price}</p>
           </div>
           <div class="options">
             <button class="color-btn underline-btn" data-index="${index}">
