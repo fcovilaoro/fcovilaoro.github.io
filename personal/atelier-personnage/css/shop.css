@@ -10,18 +10,21 @@
     justify-content: center;
     grid-template-columns: repeat(2, 1fr);
     margin: 0 auto;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .product-item {
     text-align: center;
     padding: 0px 0px 60px;
     background: #fff;
-    border-top: 1px solid #ddd;
-    border-left: 1px solid #ddd;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
     position: relative;
-    font-size: 12px;
+}
+
+.product-item h3 {
+    font-size: 14px;
 }
 
 .product-item .button {
