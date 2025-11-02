@@ -14,14 +14,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderList() {
-    if (!savedItems.length) {
-      showEmpty();
-      return;
-    }
+  if (!savedItems.length) {
+    showEmpty();
+    return;
+  }
 
-    container.innerHTML = savedItems
-      .map(
-        (item, index) => `
+  container.innerHTML = savedItems
+    .map((item, index) => {
+      const productData = products.find(p => p.name === item.name);
+
+      // Auto-assign size or color if there's only one option
+      if (productData) {
+        if (productData.sizes?.length === 1 && !item.selectedSize) {
+          item.selectedSize = productData.sizes[0];
+        }
+        if (productData.colors?.length === 1 && !item.selectedColor) {
+          item.selectedColor = productData.colors[0];
+        }
+      }
+
+      // Save back to localStorage (so it persists)
+      saveToLocal();
+
+      return `
         <div class="saved-card">
           <div class="saved-thumb">
             <img src="${item.img}" alt="${item.name}" />
@@ -42,12 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <button class="move-btn" data-index="${index}">Move to Cart</button>
             <button class="remove-btn" data-index="${index}">Remove</button>
           </div>
-        </div>`
-      )
-      .join("");
+        </div>
+      `;
+    })
+    .join("");
 
-    attachHandlers();
-  }
+  attachHandlers();
+}
 
   function attachHandlers() {
     // Remove item
