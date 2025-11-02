@@ -86,15 +86,35 @@
   color: #fff;
 }
 
+.saved-button {
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid #000;
+  background: none;
+  color: black;
+  padding: 8px 60px;
+  margin-top: 20px;
+  margin-bottom: 40%;
+  max-width: 250px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.saved-button:hover {
+  background: #000;
+  color: #fff;
+}
+
 /* Empty Message */
 .empty-message {
   text-align: center;
-  margin: 50% 0;
+  margin-top: 50%;
   color: #777;
-  font-size: 1rem;
+  font-size: 2vb;
 }
 
-/* Underline buttons (Color / Size) */
+
 .underline-btn {
   background: none;
   color: black;
@@ -118,7 +138,6 @@
   margin-top: 8px;
 }
 
- /* Apple look */
 .size-dropdown {
   position: absolute;       
   display: none;
@@ -192,6 +211,16 @@
   }
 
   .saved-actions button:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  .saved-button {
+    background: #000;
+    color: #fff;
+  }
+
+  .saved-button:hover {
     background: #000;
     color: #fff;
   }

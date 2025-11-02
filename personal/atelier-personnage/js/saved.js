@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let savedItems = JSON.parse(localStorage.getItem("savedProducts")) || [];
 
     function showEmpty() {
-        container.innerHTML = `<p class="empty-message">Your list is empty</p>`;
+        container.innerHTML = `<p class="empty-message">Your list is empty</p>
+        <a href="shop.html" class="saved-button">Continue Shopping</a>`;
     }
 
     function saveToLocal() {
@@ -170,8 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
             if (span) span.textContent = chosen;
 
-            // Close after short delay (so ✔️ is visible)
-            setTimeout(() => (dropdown.style.display = "none"), 200);
+            dropdown.style.display = "none";
         });
     });
 
