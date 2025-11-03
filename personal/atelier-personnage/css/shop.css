@@ -16,7 +16,7 @@
 
 .product-item {
     text-align: center;
-    padding: 0px 0px 60px;
+    padding: 0 0 60px;
     background: #fff;
     border-top: 1px solid black;
     border-left: 1px solid black;
@@ -68,7 +68,6 @@
     border: none;
     padding: 6px;
     cursor: pointer;
-
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
@@ -87,6 +86,26 @@
     right: 10px;
 }
 
+/* --- SLIDER INDICATORS --- */
+.slider-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.slider-indicators span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: #ccc;
+    transition: background 0.3s ease;
+}
+
+.slider-indicators span.active {
+    background: black;
+}
+
 /* --- GRID BREAKPOINTS --- */
 @media (min-width: 800px) {
     .product-grid {
@@ -100,35 +119,58 @@
     }
 }
 
-/* --- MOBILE SCROLL SNAP EFFECT --- */
+/* --- MOBILE FIXED SLIDER VERSION --- */
 @media (max-width: 1023px) {
+    /* hide arrows but keep layout consistent */
     .arrow {
-        display: none; 
+        display: none;
     }
 
+    /* keep the JS slider logic working (no native scroll snapping) */
     .image-slider {
-        display: flex;
-        overflow-x: auto;              
-        scroll-snap-type: x mandatory; 
-        white-space: nowrap;           
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        gap: 0;    
+        display: block;
+        overflow: hidden;
+        scroll-snap-type: none;
+        -webkit-overflow-scrolling: auto;
+        gap: 0;
+        padding: 10px;
     }
 
-    .image-slider-inner {
-        display: contents;
-        transition: none;
+    .image-slider .image-slider-inner {
+        display: flex;
+        transition: transform 0.5s ease;
+        width: 100%;
     }
 
     .image-slider img {
-        flex: 0 0 100%;  
-        display: inline-block;         
+        flex: 0 0 100%;
+        display: block;
         width: 100%;
-        scroll-snap-align: center;     
+        height: auto;
     }
 
     .image-slider::-webkit-scrollbar {
         display: none;
+    }
+
+    /* indicators visible on mobile */
+    .slider-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    .slider-indicators span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: #ccc;
+        transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .slider-indicators span.active {
+        background: #000;
+        transform: scaleX(1.1);
     }
 }

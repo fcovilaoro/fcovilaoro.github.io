@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const saveButtons = document.querySelectorAll(".product-item .button");
 
+  // --- SAVE BUTTON LOGIC ---
   saveButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
@@ -36,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- SLIDER LOGIC ---
   document.querySelectorAll(".image-slider").forEach((slider) => {
     const images = slider.querySelectorAll("img");
+
+    // Create .image-slider-inner if missing
     let inner = slider.querySelector(".image-slider-inner");
     if (!inner) {
       inner = document.createElement("div");
@@ -44,9 +47,31 @@ document.addEventListener("DOMContentLoaded", () => {
       slider.prepend(inner);
     }
 
+    // --- CREATE INDICATORS (progress lines or dots) ---
+    const indicatorContainer =
+      slider.querySelector(".slider-indicators") ||
+      (() => {
+        const div = document.createElement("div");
+        div.classList.add("slider-indicators");
+        slider.appendChild(div);
+        return div;
+      })();
+
+    indicatorContainer.innerHTML = "";
+    images.forEach((_, index) => {
+      const bar = document.createElement("span");
+      if (index === 0) bar.classList.add("active");
+      indicatorContainer.appendChild(bar);
+    });
+    const indicators = indicatorContainer.querySelectorAll("span");
+
     let current = 0;
+
     const updateSlider = () => {
       inner.style.transform = `translateX(-${current * 100}%)`;
+      indicators.forEach((dot, i) =>
+        dot.classList.toggle("active", i === current)
+      );
     };
 
     const leftArrow = slider.querySelector(".arrow.left");
@@ -63,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // --- MOBILE SWIPE ---
+    // --- MOBILE SWIPE SUPPORT ---
     let startX = 0;
     slider.addEventListener("touchstart", (e) => {
       startX = e.touches[0].clientX;
@@ -72,8 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const endX = e.changedTouches[0].clientX;
       const diff = endX - startX;
       if (Math.abs(diff) > 50) {
-        current = diff < 0 ? (current + 1) % images.length : (current - 1 + images.length) % images.length;
-        slider.scrollTo({ left: current * slider.clientWidth, behavior: "smooth" });
+        current =
+          diff < 0
+            ? (current + 1) % images.length
+            : (current - 1 + images.length) % images.length;
+        updateSlider();
       }
     });
   });

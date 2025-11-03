@@ -38,10 +38,14 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
+.bookmark-btn {
+  position: relative;
+}
+
 .bookmark-dot {
   position: absolute;
-  top: 19px;
-  right: 54px;
+  top: -1px; 
+  right: 8px;
   width: 6px;
   height: 6px;
   background: #000000;
@@ -326,4 +330,6 @@ h1, h2, h3, h4, h5, h6 {
     .front-page .hero-video {
         height: 1000px;
         width: 100%;
+    }
+
 }
