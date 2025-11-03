@@ -98,17 +98,12 @@ function updateBookmarkDot() {
   bookmarkDot.style.display = saved.length > 0 ? "block" : "none";
 }
 
-// Run when the header loads
 updateBookmarkDot();
 
-// Refresh when tab becomes visible again
 document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") {
-    updateBookmarkDot();
-  }
+  if (document.visibilityState === "visible") updateBookmarkDot();
 });
 
-// Optional defensive: refresh on any click
 document.body.addEventListener("click", updateBookmarkDot);
 
 // ====== SEARCH FUNCTIONALITY ======
@@ -121,7 +116,6 @@ function performSearch() {
 
   // Check if we're already on the shop page
   if (!window.location.href.includes("shop.html")) {
-    // Redirect to shop with search term in URL
     window.location.href = `shop.html?search=${encodeURIComponent(term)}`;
     return;
   }
@@ -130,7 +124,7 @@ function performSearch() {
   const products = document.querySelectorAll(".product-item");
   let found = false;
 
-  products.forEach(item => {
+  products.forEach((item) => {
     const name = item.querySelector("h3, .product-name").textContent.toLowerCase();
     if (name.includes(term)) {
       item.style.display = "block";
@@ -143,11 +137,17 @@ function performSearch() {
     }
   });
 
+  // Close search box after performing
+  searchSection.classList.remove("active");
+  searchInput.value = "";
+  if (window.innerWidth <= 972 && mobileSearchIcon)
+    mobileSearchIcon.style.display = "inline-block";
+
   if (!found) alert("No product found matching that name.");
 }
 
 // Run search on Enter key
-searchInput?.addEventListener("keydown", e => {
+searchInput?.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
     performSearch();
@@ -155,7 +155,17 @@ searchInput?.addEventListener("keydown", e => {
 });
 
 // Run search on magnifying glass click
-searchIconDesktop?.addEventListener("click", e => {
+searchIconDesktop?.addEventListener("click", (e) => {
   e.preventDefault();
   performSearch();
 });
+
+// ====== PREVENT MOBILE ZOOM-IN ======
+const style = document.createElement("style");
+style.textContent = `
+  input, textarea, select {
+    font-size: 16px !important; /* Prevent mobile zoom */
+    transform: scale(0.9); /* Makes it visually smaller */
+  }
+`;
+document.head.appendChild(style);
