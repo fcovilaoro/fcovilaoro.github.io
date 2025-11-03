@@ -41,8 +41,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    touch-action: pan-x; /* Only allow horizontal gestures */
-    -ms-touch-action: pan-x; /* For older browsers */
+    /* touch-action: auto; */
 }
 
 .image-slider-inner {

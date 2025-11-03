@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     slider.addEventListener("touchend", (e) => {
       const endX = e.changedTouches[0].clientX;
       const diff = endX - startX;
-      if (Math.abs(diff) > 50) {
+      if (Math.abs(diff) > 80) {
         current =
           diff < 0
             ? (current + 1) % images.length
