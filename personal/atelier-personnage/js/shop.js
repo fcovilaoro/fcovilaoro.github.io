@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       slider.prepend(inner);
     }
 
-    // --- CREATE INDICATORS (progress lines or dots) ---
+    // --- CREATE INDICATORS ---
     const indicatorContainer =
       slider.querySelector(".slider-indicators") ||
       (() => {
@@ -87,5 +87,39 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSlider();
       });
     }
+
+    // --- MOBILE SWIPE SUPPORT (fixed version) ---
+    let startX = 0;
+    let startY = 0;
+    let isSwiping = false;
+
+    slider.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      isSwiping = false;
+    });
+
+    slider.addEventListener("touchmove", (e) => {
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+      // Only mark as swipe if horizontal movement is stronger
+      if (Math.abs(dx) > Math.abs(dy)) {
+        isSwiping = true;
+        e.preventDefault(); // prevent vertical scroll only when truly swiping
+      }
+    });
+
+    slider.addEventListener("touchend", (e) => {
+      if (!isSwiping) return;
+      const endX = e.changedTouches[0].clientX;
+      const diff = endX - startX;
+      if (Math.abs(diff) > 50) {
+        current =
+          diff < 0
+            ? (current + 1) % images.length
+            : (current - 1 + images.length) % images.length;
+        updateSlider();
+      }
+    });
   });
 });
