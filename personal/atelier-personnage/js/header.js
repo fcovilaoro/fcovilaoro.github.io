@@ -110,3 +110,52 @@ document.addEventListener("visibilitychange", () => {
 
 // Optional defensive: refresh on any click
 document.body.addEventListener("click", updateBookmarkDot);
+
+// ====== SEARCH FUNCTIONALITY ======
+const searchInput = document.querySelector(".search-section input");
+const searchIconDesktop = document.querySelector(".search-icon-desktop");
+
+function performSearch() {
+  const term = searchInput.value.trim().toLowerCase();
+  if (!term) return;
+
+  // Check if we're already on the shop page
+  if (!window.location.href.includes("shop.html")) {
+    // Redirect to shop with search term in URL
+    window.location.href = `shop.html?search=${encodeURIComponent(term)}`;
+    return;
+  }
+
+  // We're on the shop page: filter products
+  const products = document.querySelectorAll(".product-item");
+  let found = false;
+
+  products.forEach(item => {
+    const name = item.querySelector("h3, .product-name").textContent.toLowerCase();
+    if (name.includes(term)) {
+      item.style.display = "block";
+      if (!found) {
+        item.scrollIntoView({ behavior: "smooth", block: "center" });
+        found = true;
+      }
+    } else {
+      item.style.display = "none";
+    }
+  });
+
+  if (!found) alert("No product found matching that name.");
+}
+
+// Run search on Enter key
+searchInput?.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    performSearch();
+  }
+});
+
+// Run search on magnifying glass click
+searchIconDesktop?.addEventListener("click", e => {
+  e.preventDefault();
+  performSearch();
+});

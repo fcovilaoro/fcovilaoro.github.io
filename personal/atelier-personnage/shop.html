@@ -35,7 +35,7 @@
           <div class="slider-indicators"></div>
         </div>
 
-        <h3>RELAXED FIT PANTS</h3>
+        <h3 class="product-name">RELAXED FIT PANTS</h3>
         <p>$ 1660</p>
       </div>
 
@@ -54,7 +54,7 @@
           <div class="slider-indicators"></div>
         </div>
 
-        <h3>RAGLAN OVERSIZE T-SHIRT</h3>
+        <h3 class="product-name">RAGLAN OVERSIZE T-SHIRT</h3>
         <p>$ 1075</p>
       </div>
 
@@ -73,7 +73,7 @@
           <div class="slider-indicators"></div>
         </div>
 
-        <h3>BOXY JACKET</h3>
+        <h3 class="product-name">BOXY JACKET</h3>
         <p>$ 3885</p>
       </div>
 
@@ -92,7 +92,7 @@
           <div class="slider-indicators"></div>
         </div>
 
-        <h3>BAGGY PANTS</h3>
+        <h3 class="product-name">BAGGY PANTS</h3>
         <p>$ 1620</p>
       </div>
     </div>
@@ -105,7 +105,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // Load header
+        // ====== LOAD HEADER ======
         fetch("partials/header.html")
           .then((response) => response.text())
           .then((data) => {
@@ -116,7 +116,7 @@
             document.body.appendChild(script);
           });
 
-        // Load footer
+        // ====== LOAD FOOTER ======
         fetch("partials/footer.html")
           .then((res) => res.text())
           .then((data) => {
@@ -126,6 +126,39 @@
             script.src = "js/footer.js";
             document.body.appendChild(script);
           });
+
+        // ====== SEARCH LOGIC (runs when ?search=term in URL) ======
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchTerm = urlParams.get("search");
+
+        if (searchTerm) {
+          const term = searchTerm.toLowerCase();
+          const products = document.querySelectorAll(".product-item");
+          let found = false;
+
+          products.forEach((item) => {
+            const name =
+              item.querySelector("h3, .product-name").textContent.toLowerCase();
+            if (name.includes(term)) {
+              item.style.display = "block";
+              if (!found) {
+                item.scrollIntoView({ behavior: "smooth", block: "center" });
+                found = true;
+              }
+            } else {
+              item.style.display = "none";
+            }
+          });
+
+          if (!found) {
+            const msg = document.createElement("p");
+            msg.textContent = `No results found for "${searchTerm}"`;
+            msg.style.textAlign = "center";
+            msg.style.marginTop = "2rem";
+            msg.style.color = "#999";
+            document.querySelector(".product-grid").after(msg);
+          }
+        }
       });
     </script>
   </body>

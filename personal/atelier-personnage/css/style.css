@@ -141,7 +141,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Search section */
 .search-section {
     width: 100%;
-    padding: 16px;
+    padding: 12px;
     border-bottom: 1px solid black;
     position: fixed;
     top: 63px;
@@ -162,7 +162,7 @@ h1, h2, h3, h4, h5, h6 {
     background: transparent;
     border: none;
     outline: none;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-family: "Jost", sans-serif;
 }
 
