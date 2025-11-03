@@ -87,22 +87,5 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSlider();
       });
     }
-
-    // --- MOBILE SWIPE SUPPORT ---
-    let startX = 0;
-    slider.addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX;
-    });
-    slider.addEventListener("touchend", (e) => {
-      const endX = e.changedTouches[0].clientX;
-      const diff = endX - startX;
-      if (Math.abs(diff) > 80) {
-        current =
-          diff < 0
-            ? (current + 1) % images.length
-            : (current - 1 + images.length) % images.length;
-        updateSlider();
-      }
-    });
   });
 });

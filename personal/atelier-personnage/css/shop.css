@@ -41,7 +41,6 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    /* touch-action: auto; */
 }
 
 .image-slider-inner {
