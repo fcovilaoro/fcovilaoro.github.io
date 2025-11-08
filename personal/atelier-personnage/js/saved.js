@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             </button>
                         </div>
                         <div class="saved-actions">
-                            <button class="move-btn" data-index="${index}">Move to Cart</button>
+                            <button class="move-btn" data-index="${index}">Move to Bag</button>
                             <button class="remove-btn" data-index="${index}">Remove</button>
                         </div>
                     </div>
