@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bag | Atelier Personnage</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/bag.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div id="header-placeholder"></div>
+
+    <div id="space">
+        <h3>BAG</h3>
+    </div>
+
+    <main id="bag-page">
+      <h2 class="section-title">HOME DELIVERY</h2>
+
+      <div class="bag-layout">
+        <!-- Left: Items list -->
+        <section id="bag-items-container" class="bag-items"></section>
+
+        <!-- Right: Order Summary -->
+        <section class="order-summary">
+          <h3>ORDER SUMMARY</h3>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="subtotal">$0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping <small class="tag">STANDARD</small></span>
+            <span>Free</span>
+          </div>
+          <div class="summary-row">
+            <span>Est. Sales Tax <span class="info">ⓘ</span></span>
+            <span>To be calculated</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total (incl. tax)</span>
+            <span id="total">$0.00</span>
+          </div>
+
+          <div class="promo-code">
+            <input type="text" placeholder="Promo Code" id="promo-input" />
+            <button id="apply-promo">APPLY</button>
+          </div>
+
+          <button id="apple-pay-btn">
+            <i class="fab fa-apple"></i> Pay
+          </button>
+          <button id="checkout-btn">PROCEED TO CHECKOUT</button>
+        </section>
+      </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/bag.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Load header
+        fetch("partials/header.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("header-placeholder").innerHTML = html;
+            const script = document.createElement("script");
+            script.src = "js/header.js";
+            document.body.appendChild(script);
+          });
+
+        // Load footer
+        fetch("partials/footer.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("footer-placeholder").innerHTML = html;
+            const script = document.createElement("script");
+            script.src = "js/footer.js";
+            document.body.appendChild(script);
+          });
+      });
+    </script>
+  </body>
+</html>

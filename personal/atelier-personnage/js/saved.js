@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .map((item, index) => {
                 const productData = products.find(p => p.name === item.name);
 
-                // Auto-assign size or color if only one option
+                // Auto-assign size/color if only one option
                 if (productData) {
                     if (productData.sizes?.length === 1 && !item.selectedSize) {
                         item.selectedSize = productData.sizes[0];
@@ -76,17 +76,58 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Move to cart
+        // Move to bag (updated with size check)
         document.querySelectorAll(".move-btn").forEach((btn) => {
             btn.addEventListener("click", () => {
                 const index = parseInt(btn.dataset.index);
                 const item = savedItems[index];
+                const productData = products.find(p => p.name === item.name);
+
+                if (!productData) {
+                    alert("Error: Product data not found.");
+                    return;
+                }
+
+                // --- Require size selection ---
+                if (!item.selectedSize) {
+                    const sizeBtn = document.querySelector(`.size-btn[data-index="${index}"]`);
+                    if (sizeBtn) {
+                        // Flash border red
+                        sizeBtn.style.borderColor = "red";
+                        setTimeout(() => sizeBtn.style.borderColor = "black", 800);
+
+                        // Open dropdown automatically
+                        sizeBtn.click();
+                    }
+                    return;
+                }
+
+                // Clean numeric price
+                const numericPrice = parseFloat(
+                    (item.price || productData.price || "0").toString().replace(/[^0-9.]/g, "")
+                );
+
+                // Build full cart item
+                const cartItem = {
+                    id: productData.id || item.id,
+                    name: productData.name || item.name,
+                    price: numericPrice,
+                    img: item.img || productData.images?.[0],
+                    selectedColor: item.selectedColor || productData.colors?.[0],
+                    selectedSize: item.selectedSize,
+                };
+
+                // Save to bag
                 let cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
-                cartItems.push(item);
+                cartItems.push(cartItem);
                 localStorage.setItem("cartProducts", JSON.stringify(cartItems));
+
+                // Remove from saved list
                 savedItems.splice(index, 1);
                 saveToLocal();
                 renderList();
+
+                alert(`${cartItem.name} moved to your bag 🛍️`);
             });
         });
 
@@ -112,15 +153,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     const li = document.createElement("li");
                     li.textContent = opt;
 
-                    // Keep the checkmark on reopen
-                    if (opt === currentSelection) {
-                        li.classList.add("selected");
-                    }
-
+                    if (opt === currentSelection) li.classList.add("selected");
                     dropdown.querySelector("ul").appendChild(li);
                 });
 
-                // Hide both dropdowns before showing the selected one
                 [sizeDropdown, colorDropdown].forEach((d) => (d.style.display = "none"));
 
                 // Position dropdown
@@ -157,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const type = dropdown.getAttribute("data-type");
             const index = parseInt(dropdown.getAttribute("data-for"));
 
-            // Remove old selected
             dropdown.querySelectorAll("li").forEach(li => li.classList.remove("selected"));
             item.classList.add("selected");
 
@@ -175,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Close dropdowns on outside click or escape
+    // Close dropdowns
     document.addEventListener("click", (e) => {
         if (!sizeDropdown.contains(e.target) && !colorDropdown.contains(e.target)) {
             sizeDropdown.style.display = "none";
