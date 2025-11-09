@@ -106,6 +106,22 @@ document.addEventListener("visibilitychange", () => {
 
 document.body.addEventListener("click", updateBookmarkDot);
 
+// ====== BAG DOT PERSISTENCE ======
+function updateBagDot() {
+  const bagDot = document.querySelector(".bag-dot");
+  if (!bagDot) return;
+  const cart = JSON.parse(localStorage.getItem("cartProducts")) || [];
+  bagDot.style.display = cart.length > 0 ? "block" : "none";
+}
+
+updateBagDot();
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") updateBagDot();
+});
+
+document.body.addEventListener("click", updateBagDot);
+
 // ====== SEARCH FUNCTIONALITY ======
 const searchInput = document.querySelector(".search-section input");
 const searchIconDesktop = document.querySelector(".search-icon-desktop");

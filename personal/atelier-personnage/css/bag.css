@@ -1,19 +1,19 @@
 #space {
-  text-align: center;
-  padding-top: 120px;
-  padding-bottom: 55px;
-  border-bottom: 1px solid black;
+    text-align: center;
+    padding-top: 120px;
+    padding-bottom: 55px;
+    border-bottom: 1px solid black;
 }
 
 #bag-page {
     width: 90%;
     max-width: 1200px;
-    margin: 2rem auto 4rem;
-    font-family: "Helvetica Neue", sans-serif;
+    margin: 4rem auto 4rem;
 }
 
 .section-title {
     font-size: 1.2rem;
+    width: 200px;
     letter-spacing: 1px;
     font-weight: 600;
     margin-bottom: 2rem;
@@ -31,13 +31,12 @@
     gap: 1.5rem;
 }
 
-/* Bag item card */
 .bag-card {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 1rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
 }
 
 .bag-thumb img {
@@ -80,74 +79,83 @@
     color: #000;
 }
 
-/* Empty state */
-.empty-message {
+.empty-state {
+    grid-column: 1 / -1; /* span both columns */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    font-size: 1.1rem;
-    margin: 2rem 0 1rem;
+    width: 100%;
+    min-height: 60vh;
+    position: relative;
+}
+
+.empty-message {
+    color: #777;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 
 .saved-button {
-    display: block;
-    text-align: center;
+    text-decoration: none;
+    border: 1px solid #000;
+    background: none;
+    color: black;
+    padding: 8px 60px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.saved-button:hover {
     background: #000;
     color: #fff;
-    padding: 0.8rem;
-    width: 220px;
-    margin: 0 auto;
-    text-decoration: none;
-    border-radius: 3px;
 }
 
-/* Order summary */
+.bag-layout:has(.empty-state) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .order-summary {
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    margin-top: -85px;
+    border-left: 1px solid #ddd;
     padding: 1.5rem;
     height: fit-content;
-}
-
-.order-summary h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+    letter-spacing: 1px;
 }
 
 .summary-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.6rem;
-    font-size: 0.9rem;
+    margin-bottom: 2rem;
 }
 
 .summary-row.total {
     font-weight: bold;
     border-top: 1px solid #ddd;
-    padding-top: 0.6rem;
+    padding-top: 2rem;
 }
 
 .promo-code {
     display: flex;
-    margin: 1rem 0;
+    margin: 0.8rem -15px;
 }
 
 #promo-input {
     flex: 1;
-    padding: 0.5rem;
+    padding: 1rem;
     border: 1px solid #ddd;
-    border-radius: 4px 0 0 4px;
 }
 
 #apply-promo {
-    padding: 0.5rem 1rem;
+    padding: 8px;
     background: #f2f2f2;
     border: 1px solid #ddd;
-    border-left: none;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
 }
 
-/* Buttons */
 #apple-pay-btn {
     width: 100%;
     background: #000;
@@ -156,7 +164,6 @@
     border: none;
     font-weight: bold;
     font-size: 1rem;
-    border-radius: 6px;
     margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
@@ -172,7 +179,6 @@
     border: 1px solid #000;
     font-weight: bold;
     font-size: 0.95rem;
-    border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -182,7 +188,48 @@
     color: #fff;
 }
 
-/* Responsive */
+.order-info {
+    margin-top: 2rem;
+}
+
+.info-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.info-toggle:hover {
+    background-color: #f4f4f4;
+    color: #000;
+}
+
+.info-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    color: #555;
+    padding: 0 0.8rem;
+    background-color: transparent;
+}
+
+.info-item.active .info-content {
+    max-height: 150px;
+    background-color: #f4f4f4;
+    padding: 0.8rem;
+    border-radius: 4px;
+}
+
+/* ---------- Responsive ---------- */
 @media (max-width: 800px) {
     .bag-layout {
         grid-template-columns: 1fr;
@@ -190,9 +237,21 @@
 
     .order-summary {
         margin-top: 2rem;
+        border: none;
     }
 
     .bag-thumb img {
         width: 100px;
+    }
+
+     .saved-button {
+        background: #000;
+        color: #fff;
+        border-color: #000;
+    }
+
+    .saved-button:hover {
+        background: #000;
+        color: #fff;
     }
 }

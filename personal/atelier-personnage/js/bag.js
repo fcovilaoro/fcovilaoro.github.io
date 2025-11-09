@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const subtotalEl = document.getElementById("subtotal");
     const totalEl = document.getElementById("total");
     const orderSummary = document.querySelector(".order-summary");
-    const sectionTitle = document.querySelector(".section-title"); // <--- grab the title
+    const sectionTitle = document.querySelector(".section-title");
 
     let bagItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
 
@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
         subtotalEl.textContent = "$0.00";
         totalEl.textContent = "$0.00";
 
-        // Hide the order summary and title
+        // Hide summary and title
         orderSummary.style.display = "none";
-        sectionTitle.style.display = "none"; // <---
+        sectionTitle.style.display = "none";
     }
 
     function calculateTotals() {
@@ -42,12 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Show the order summary and title again
         orderSummary.style.display = "block";
-        sectionTitle.style.display = "block"; // <---
+        sectionTitle.style.display = "block";
 
         container.innerHTML = bagItems
-            .map((item, index) => `
+            .map(
+                (item, index) => `
                 <div class="bag-card">
                     <div class="bag-thumb">
                         <img src="${item.img || item.images?.[0]}" alt="${item.name}">
@@ -64,7 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button class="remove-btn" data-index="${index}">Remove</button>
                     </div>
                 </div>
-            `)
+            `
+            )
             .join("");
 
         calculateTotals();
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function attachHandlers() {
-        document.querySelectorAll(".remove-btn").forEach(btn => {
+        document.querySelectorAll(".remove-btn").forEach((btn) => {
             btn.addEventListener("click", () => {
                 const index = parseInt(btn.dataset.index);
                 bagItems.splice(index, 1);
@@ -83,4 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     renderBag();
+});
+
+document.querySelectorAll(".info-toggle").forEach((button) => {
+    button.addEventListener("click", () => {
+        const item = button.parentElement;
+        item.classList.toggle("active");
+    });
 });

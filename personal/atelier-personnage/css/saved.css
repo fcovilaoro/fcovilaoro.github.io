@@ -111,9 +111,8 @@
   text-align: center;
   margin-top: 50%;
   color: #777;
-  font-size: 2vb;
+  font-size: 1.2rem;
 }
-
 
 .underline-btn {
   background: none;
@@ -185,19 +184,19 @@
   color: rgba(255,255,255,0.7);
 }
 
-/* ensure dropdown doesn't go off-screen horizontally */
 .size-dropdown.right-edge {
   transform-origin: top right;
 }
 
-
-/* Keep previous panel styles (in case you also use the slide-up panel) */
-.size-panel { display: none; } /* leave existing panel hidden if present */
+.size-panel { 
+  display: none; 
+} 
 
 .size-dropdown-list li:active {
     background: #ffffff40;
     border-radius: 5px;
 }
+
 
 @media (max-width: 600px) {
   .saved-card { padding: 20px; }

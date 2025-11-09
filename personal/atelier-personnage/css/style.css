@@ -38,19 +38,39 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
-.bookmark-btn {
+/* ensure the parent link is positioned for absolute dot placement */
+.bookmark-btn,
+.bag-btn {
   position: relative;
 }
 
+/* bookmark dot (existing) */
 .bookmark-dot {
   position: absolute;
-  top: -1px; 
-  right: 8px;
+  top: -5px;
+  right: 5px;
   width: 6px;
   height: 6px;
   background: #000000;
   border-radius: 50%;
   display: none;
+}
+
+.bag-dot {
+  position: absolute;
+  top: -5px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  background: #000000;
+  border-radius: 50%;
+  display: none;
+}
+
+/* show dot when active (toggle class preferred) */
+.bookmark-dot.active,
+.bag-dot.active {
+  display: block;
 }
 
 .logo {
@@ -256,16 +276,16 @@ h1, h2, h3, h4, h5, h6 {
     background: #ececec;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
 /* Desktop view */
 @media (min-width: 972px) {
-    .hidden{
-    display: flex;
-}
-    
+    .hidden {
+        display: flex;
+    }
+
     #header {
         justify-content: space-between;
     }
@@ -333,5 +353,4 @@ h1, h2, h3, h4, h5, h6 {
         height: 1000px;
         width: 100%;
     }
-
 }
