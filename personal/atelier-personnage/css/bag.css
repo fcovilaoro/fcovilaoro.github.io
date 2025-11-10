@@ -8,7 +8,7 @@
 #bag-page {
     width: 90%;
     max-width: 1200px;
-    margin: 4rem auto 4rem;
+    margin: 3rem auto 4rem;
 }
 
 .section-title {
@@ -22,7 +22,7 @@
 .bag-layout {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 3rem;
+    gap: 2rem;
 }
 
 .bag-items {
@@ -130,30 +130,50 @@
 .summary-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .summary-row.total {
     font-weight: bold;
     border-top: 1px solid #ddd;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
 }
 
 .promo-code {
+    width: 100%;
+    margin: 24px;
     display: flex;
-    margin: 0.8rem -15px;
+    position: relative;
 }
 
 #promo-input {
-    flex: 1;
-    padding: 1rem;
+    width: 100%; 
+    margin-left: 0;
+    padding: 1rem 6rem 1rem 1rem;
     border: 1px solid #ddd;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
 }
 
 #apply-promo {
-    padding: 8px;
+    position: absolute;
+    right: 20px;
+    top: 6px;
+    bottom: 6px;
+    padding: 0 2rem;
+    border: none;
     background: #f2f2f2;
-    border: 1px solid #ddd;
+    color: black;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#apply-promo:hover {
+    background: black;
+    color: white;
 }
 
 #apple-pay-btn {
@@ -195,6 +215,7 @@
 .info-toggle {
     width: 100%;
     background: none;
+    color: black;
     border: none;
     text-align: left;
     padding: 1rem 0.5rem;

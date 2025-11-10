@@ -126,8 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 savedItems.splice(index, 1);
                 saveToLocal();
                 renderList();
-
-                alert(`${cartItem.name} moved to your bag 🛍️`);
             });
         });
 
