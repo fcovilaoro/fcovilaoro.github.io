@@ -141,7 +141,7 @@
 
 .promo-code {
     width: 100%;
-    margin: 24px;
+    margin: 1.5rem;
     display: flex;
     position: relative;
 }
@@ -279,4 +279,7 @@
     .order-summary {
         margin-top: -10px;
     }
+
+    #apply-promo {
+    right: 28px;
 }
