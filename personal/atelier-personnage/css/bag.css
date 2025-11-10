@@ -275,4 +275,8 @@
         background: #000;
         color: #fff;
     }
+
+    .order-summary {
+        margin-top: -10px;
+    }
 }
