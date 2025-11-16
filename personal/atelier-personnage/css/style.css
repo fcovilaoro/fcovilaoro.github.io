@@ -217,20 +217,48 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
+.video-text {
+    position: absolute;
+    bottom: 8%;       /* distance from bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    gap: 20px;
+    z-index: 2;
+}
+
+.hero-title {
+    font-family: "Bodoni Moda SC", serif;
+    font-size: 3vh;
+    letter-spacing: 2px;
+    color: white;
+}
+
 /* Universal adaptive button */
 .btn {
     position: absolute;
     bottom: 40px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 50%);
     display: inline-block;
-    padding: 0.5vw 4vw;
+    padding: 1vb 6vb;
     font-size: 2vh;
     text-decoration: none;
-    border: 1px solid white;
     color: white;
-    mix-blend-mode: hard-light;
+    background-color: black;
+    mix-blend-mode: exclusion;
     transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.video-text .btn {
+    position: static;
+    transform: none;
 }
 
 .btn:hover {
@@ -259,6 +287,29 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+.hero-wrap {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    z-index: 5;
+}
+
+.hero-wrap .btn {
+    position: static;
+    transform: none;
+    margin-top: 12px;
+}
+
+.hero-wrap .btn:hover {
+    background-color: white;
+    mix-blend-mode: exclusion;
+    color: black;
+    border-color: white;
 }
 
 .match-grid-size {
