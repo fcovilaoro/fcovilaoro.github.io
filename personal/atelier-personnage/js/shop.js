@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let position = 0;
         let isDragging = false;
         let startX = 0;
+        let startY = 0;
+        let isHorizontalSwipe = false;
 
         const updateSlider = (animate = true) => {
             inner.style.transition = animate ? "transform 0.5s ease" : "none";
@@ -92,26 +94,42 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // --- DESKTOP stays normal ---
-        // --- MOBILE/TABLET FINGER DRAG ---
+        // --- TOUCH LOGIC (fixed version) ---
         slider.addEventListener("touchstart", (e) => {
             if (window.innerWidth > 1024) return;
+
             isDragging = true;
+            isHorizontalSwipe = false;
             startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+
             position = -current * slider.offsetWidth;
             inner.style.transition = "none";
         });
 
         slider.addEventListener("touchmove", (e) => {
             if (!isDragging || window.innerWidth > 1024) return;
+
             const dx = e.touches[0].clientX - startX;
-            inner.style.transform = `translateX(${position + dx}px)`;
-            e.preventDefault();
+            const dy = Math.abs(e.touches[0].clientY - startY);
+
+            // detect swipe direction
+            if (Math.abs(dx) > dy) {
+                isHorizontalSwipe = true;
+            } else {
+                isHorizontalSwipe = false;
+            }
+
+            if (isHorizontalSwipe) {
+                inner.style.transform = `translateX(${position + dx}px)`;
+                e.preventDefault(); // ONLY block scroll during real slider drag
+            }
         });
 
         slider.addEventListener("touchend", (e) => {
             if (!isDragging || window.innerWidth > 1024) return;
             isDragging = false;
+
             const dx = e.changedTouches[0].clientX - startX;
             const threshold = slider.offsetWidth * 0.2;
 
