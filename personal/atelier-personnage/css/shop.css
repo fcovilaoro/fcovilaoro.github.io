@@ -28,11 +28,12 @@
 
 .product-item .button {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 6px;
+    top: 6px;
     font-size: 18px;
     color: black;
     z-index: 10;
+    padding: 12px;
 }
 
 /* --- IMAGE SLIDER DESKTOP --- */

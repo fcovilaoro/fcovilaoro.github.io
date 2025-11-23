@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // --- TOUCH LOGIC (fixed version) ---
+        // --- TOUCH LOGIC WITH LOOPING ---
         slider.addEventListener("touchstart", (e) => {
             if (window.innerWidth > 1024) return;
 
@@ -113,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const dx = e.touches[0].clientX - startX;
             const dy = Math.abs(e.touches[0].clientY - startY);
 
-            // detect swipe direction
             if (Math.abs(dx) > dy) {
                 isHorizontalSwipe = true;
             } else {
@@ -122,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (isHorizontalSwipe) {
                 inner.style.transform = `translateX(${position + dx}px)`;
-                e.preventDefault(); // ONLY block scroll during real slider drag
+                e.preventDefault();
             }
         });
 
@@ -133,11 +132,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const dx = e.changedTouches[0].clientX - startX;
             const threshold = slider.offsetWidth * 0.2;
 
-            if (dx < -threshold && current < images.length - 1) {
-                current++;
-            } else if (dx > threshold && current > 0) {
-                current--;
+            // --- LOOPING SWIPE ---
+            if (dx < -threshold) {
+                current = (current + 1) % images.length; // NEXT with loop
+            } else if (dx > threshold) {
+                current = (current - 1 + images.length) % images.length; // PREV with loop
             }
+
             updateSlider();
         });
 
