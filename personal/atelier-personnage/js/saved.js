@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let savedItems = JSON.parse(localStorage.getItem("savedProducts")) || [];
 
-    // Map your product names to real CSS color values
     const colorMap = {
         "White": "#ffffff",
         "Black": "#000000",
@@ -24,38 +23,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderList() {
-        if (!savedItems.length) {
-            showEmpty();
-            return;
-        }
+        if (!savedItems.length) return showEmpty();
 
         container.innerHTML = savedItems
             .map((item, index) => {
-                const productData = products.find(p => p.name === item.name);
+                const product = products.find(p => p.name === item.name);
 
-                if (productData) {
-                    if (productData.sizes?.length === 1 && !item.selectedSize) {
-                        item.selectedSize = productData.sizes[0];
+                if (product) {
+                    if (product.sizes?.length === 1 && !item.selectedSize) {
+                        item.selectedSize = product.sizes[0];
                     }
-                    if (productData.colors?.length === 1 && !item.selectedColor) {
-                        item.selectedColor = productData.colors[0];
+                    if (product.colors?.length === 1 && !item.selectedColor) {
+                        item.selectedColor = product.colors[0];
                     }
                 }
 
                 saveToLocal();
 
-                const swatchesHTML = productData.colors
-                    .map(color => {
-                        const cssColor = colorMap[color] || color;
-                        const selectedClass = item.selectedColor === color ? "selected" : "";
-                        return `
-                            <div class="swatch ${selectedClass}" 
-                                 style="background:${cssColor};" 
-                                 data-color="${color}" 
-                                 data-index="${index}"></div>
-                        `;
-                    })
-                    .join("");
+                const swatchesHTML = product.colors.map(color => {
+                    const cssColor = colorMap[color] || color;
+                    const selected = item.selectedColor === color ? "selected" : "";
+                    return `<div class="swatch ${selected}" style="background:${cssColor};" data-color="${color}" data-index="${index}"></div>`;
+                }).join("");
 
                 return `
                     <div class="saved-card">
@@ -64,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
 
                         <div class="saved-thumb">
-                            <img src="${item.img}" alt="${item.name}" />
+                            <img src="${item.img}" alt="${item.name}">
                         </div>
 
                         <div class="saved-info">
@@ -72,14 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
                             <p>${item.price}</p>
                         </div>
 
-                        <div class="color-swatches">
-                            ${swatchesHTML}
-                        </div>
+                        <div class="color-swatches">${swatchesHTML}</div>
 
                         <div class="saved-actions">
                             <button class="size-action-btn" data-index="${index}">
-                                Size <span class="size-value">${item.selectedSize || ""}</span>
+                                <span class="size-value">${item.selectedSize || "Size"}</span>
                             </button>
+
                             <button class="move-btn" data-index="${index}">
                                 Move to Bag
                             </button>
@@ -93,47 +81,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function attachHandlers() {
-        // REMOVE
         document.querySelectorAll(".remove-x").forEach(btn => {
             btn.addEventListener("click", () => {
-                const index = parseInt(btn.dataset.index);
-                savedItems.splice(index, 1);
+                savedItems.splice(btn.dataset.index, 1);
                 saveToLocal();
                 renderList();
             });
         });
 
-        // MOVE TO BAG
         document.querySelectorAll(".move-btn").forEach(btn => {
             btn.addEventListener("click", () => {
-                const index = parseInt(btn.dataset.index);
+                const index = btn.dataset.index;
                 const item = savedItems[index];
-                const productData = products.find(p => p.name === item.name);
+                const product = products.find(p => p.name === item.name);
 
                 if (!item.selectedSize) {
                     const sizeBtn = document.querySelector(`.size-action-btn[data-index="${index}"]`);
                     sizeBtn.style.borderColor = "red";
-                    setTimeout(() => sizeBtn.style.borderColor = "black", 800);
+                    setTimeout(() => sizeBtn.style.borderColor = "black", 900);
                     sizeBtn.click();
                     return;
                 }
 
-                const numericPrice = parseFloat(
-                    (item.price || productData.price || "0").toString().replace(/[^0-9.]/g, "")
+                const price = parseFloat(
+                    (item.price || product.price).toString().replace(/[^0-9.]/g, "")
                 );
 
                 const cartItem = {
-                    id: productData.id || item.id,
-                    name: productData.name,
-                    price: numericPrice,
+                    name: product.name,
                     img: item.img,
-                    selectedColor: item.selectedColor,
-                    selectedSize: item.selectedSize
+                    price,
+                    selectedSize: item.selectedSize,
+                    selectedColor: item.selectedColor
                 };
 
-                let cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
-                cartItems.push(cartItem);
-                localStorage.setItem("cartProducts", JSON.stringify(cartItems));
+                let cart = JSON.parse(localStorage.getItem("cartProducts")) || [];
+                cart.push(cartItem);
+                localStorage.setItem("cartProducts", JSON.stringify(cart));
 
                 savedItems.splice(index, 1);
                 saveToLocal();
@@ -141,54 +125,50 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // SIZE DROPDOWN
         document.querySelectorAll(".size-action-btn").forEach(btn => {
-            btn.addEventListener("click", (e) => {
+            btn.addEventListener("click", e => {
                 e.stopPropagation();
 
-                const index = parseInt(btn.dataset.index);
-                const savedItem = savedItems[index];
-                const productData = products.find(p => p.name === savedItem.name);
+                const index = btn.dataset.index;
+                const item = savedItems[index];
+                const product = products.find(p => p.name === item.name);
 
-                sizeDropdown.querySelector("ul").innerHTML = "";
-
-                productData.sizes.forEach(size => {
-                    const li = document.createElement("li");
-                    li.textContent = size;
-                    if (size === savedItem.selectedSize) li.classList.add("selected");
-                    sizeDropdown.querySelector("ul").appendChild(li);
-                });
+                sizeDropdown.querySelector("ul").innerHTML = product.sizes
+                    .map(size => `<li>${size}</li>`)
+                    .join("");
 
                 const rect = btn.getBoundingClientRect();
-                sizeDropdown.style.display = "block";
                 sizeDropdown.style.left = `${rect.left + rect.width / 2 - 75}px`;
                 sizeDropdown.style.top = `${rect.bottom + window.scrollY + 10}px`;
+                sizeDropdown.style.display = "block";
+
+                setTimeout(() => sizeDropdown.classList.add("open"), 10);
 
                 sizeDropdown.setAttribute("data-for", index);
             });
         });
 
-        sizeDropdown.addEventListener("click", (e) => {
+        sizeDropdown.addEventListener("click", e => {
             if (e.target.tagName !== "LI") return;
 
-            const index = parseInt(sizeDropdown.getAttribute("data-for"));
-            const selected = e.target.textContent.trim();
+            const index = sizeDropdown.getAttribute("data-for");
+            const chosen = e.target.textContent.trim();
 
-            savedItems[index].selectedSize = selected;
+            savedItems[index].selectedSize = chosen;
             saveToLocal();
 
-            document.querySelector(`.size-action-btn[data-index="${index}"] .size-value`).textContent = selected;
+            document.querySelector(
+                `.size-action-btn[data-index="${index}"] .size-value`
+            ).textContent = chosen;
 
-            sizeDropdown.style.display = "none";
+            sizeDropdown.classList.remove("open");
+            setTimeout(() => sizeDropdown.style.display = "none", 180);
         });
 
-        // COLOR SWATCHES CLICK
         document.querySelectorAll(".swatch").forEach(swatch => {
             swatch.addEventListener("click", () => {
-                const index = parseInt(swatch.dataset.index);
-                const colorName = swatch.dataset.color;
-
-                savedItems[index].selectedColor = colorName;
+                const index = swatch.dataset.index;
+                savedItems[index].selectedColor = swatch.dataset.color;
                 saveToLocal();
 
                 document.querySelectorAll(`.swatch[data-index="${index}"]`)
@@ -199,7 +179,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         document.addEventListener("click", () => {
-            sizeDropdown.style.display = "none";
+            sizeDropdown.classList.remove("open");
+            setTimeout(() => (sizeDropdown.style.display = "none"), 180);
         });
     }
 
