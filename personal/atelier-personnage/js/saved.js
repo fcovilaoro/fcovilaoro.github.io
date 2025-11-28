@@ -1,13 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("saved-items-container");
     const sizeDropdown = document.getElementById("sizeDropdown");
-    const colorDropdown = document.getElementById("colorDropdown");
 
     let savedItems = JSON.parse(localStorage.getItem("savedProducts")) || [];
 
+    // Map your product names to real CSS color values
+    const colorMap = {
+        "White": "#ffffff",
+        "Black": "#000000",
+        "Gray": "#bfbfbf",
+        "Navy": "#001f3f"
+    };
+
     function showEmpty() {
-        container.innerHTML = `<p class="empty-message">Your list is empty</p>
-        <a href="shop.html" class="saved-button">Continue Shopping</a>`;
+        container.innerHTML = `
+            <p class="empty-message">Your list is empty</p>
+            <a href="shop.html" class="saved-button">Continue Shopping</a>
+        `;
     }
 
     function saveToLocal() {
@@ -24,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .map((item, index) => {
                 const productData = products.find(p => p.name === item.name);
 
-                // Auto-assign size/color if only one option
                 if (productData) {
                     if (productData.sizes?.length === 1 && !item.selectedSize) {
                         item.selectedSize = productData.sizes[0];
@@ -36,26 +44,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 saveToLocal();
 
+                const swatchesHTML = productData.colors
+                    .map(color => {
+                        const cssColor = colorMap[color] || color;
+                        const selectedClass = item.selectedColor === color ? "selected" : "";
+                        return `
+                            <div class="swatch ${selectedClass}" 
+                                 style="background:${cssColor};" 
+                                 data-color="${color}" 
+                                 data-index="${index}"></div>
+                        `;
+                    })
+                    .join("");
+
                 return `
                     <div class="saved-card">
+                        <div class="remove-x" data-index="${index}">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+
                         <div class="saved-thumb">
                             <img src="${item.img}" alt="${item.name}" />
                         </div>
+
                         <div class="saved-info">
                             <h4>${item.name}</h4>
                             <p>${item.price}</p>
                         </div>
-                        <div class="options">
-                            <button class="color-btn underline-btn" data-index="${index}">
-                                Color: <span class="color-value">${item.selectedColor || ""}</span>
-                            </button>
-                            <button class="size-btn underline-btn" data-index="${index}">
-                                Size: <span class="size-value">${item.selectedSize || ""}</span>
-                            </button>
+
+                        <div class="color-swatches">
+                            ${swatchesHTML}
                         </div>
+
                         <div class="saved-actions">
-                            <button class="move-btn" data-index="${index}">Move to Bag</button>
-                            <button class="remove-btn" data-index="${index}">Remove</button>
+                            <button class="size-action-btn" data-index="${index}">
+                                Size <span class="size-value">${item.selectedSize || ""}</span>
+                            </button>
+                            <button class="move-btn" data-index="${index}">
+                                Move to Bag
+                            </button>
                         </div>
                     </div>
                 `;
@@ -66,8 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function attachHandlers() {
-        // Remove item
-        document.querySelectorAll(".remove-btn").forEach((btn) => {
+        // REMOVE
+        document.querySelectorAll(".remove-x").forEach(btn => {
             btn.addEventListener("click", () => {
                 const index = parseInt(btn.dataset.index);
                 savedItems.splice(index, 1);
@@ -76,61 +103,46 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Move to bag (updated with size check)
-        document.querySelectorAll(".move-btn").forEach((btn) => {
+        // MOVE TO BAG
+        document.querySelectorAll(".move-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 const index = parseInt(btn.dataset.index);
                 const item = savedItems[index];
                 const productData = products.find(p => p.name === item.name);
 
-                if (!productData) {
-                    alert("Error: Product data not found.");
-                    return;
-                }
-
-                // --- Require size selection ---
                 if (!item.selectedSize) {
-                    const sizeBtn = document.querySelector(`.size-btn[data-index="${index}"]`);
-                    if (sizeBtn) {
-                        // Flash border red
-                        sizeBtn.style.borderColor = "red";
-                        setTimeout(() => sizeBtn.style.borderColor = "black", 800);
-
-                        // Open dropdown automatically
-                        sizeBtn.click();
-                    }
+                    const sizeBtn = document.querySelector(`.size-action-btn[data-index="${index}"]`);
+                    sizeBtn.style.borderColor = "red";
+                    setTimeout(() => sizeBtn.style.borderColor = "black", 800);
+                    sizeBtn.click();
                     return;
                 }
 
-                // Clean numeric price
                 const numericPrice = parseFloat(
                     (item.price || productData.price || "0").toString().replace(/[^0-9.]/g, "")
                 );
 
-                // Build full cart item
                 const cartItem = {
                     id: productData.id || item.id,
-                    name: productData.name || item.name,
+                    name: productData.name,
                     price: numericPrice,
-                    img: item.img || productData.images?.[0],
-                    selectedColor: item.selectedColor || productData.colors?.[0],
-                    selectedSize: item.selectedSize,
+                    img: item.img,
+                    selectedColor: item.selectedColor,
+                    selectedSize: item.selectedSize
                 };
 
-                // Save to bag
                 let cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
                 cartItems.push(cartItem);
                 localStorage.setItem("cartProducts", JSON.stringify(cartItems));
 
-                // Remove from saved list
                 savedItems.splice(index, 1);
                 saveToLocal();
                 renderList();
             });
         });
 
-        // Handle dropdown openings
-        document.querySelectorAll(".size-btn, .color-btn").forEach((btn) => {
+        // SIZE DROPDOWN
+        document.querySelectorAll(".size-action-btn").forEach(btn => {
             btn.addEventListener("click", (e) => {
                 e.stopPropagation();
 
@@ -138,95 +150,58 @@ document.addEventListener("DOMContentLoaded", () => {
                 const savedItem = savedItems[index];
                 const productData = products.find(p => p.name === savedItem.name);
 
-                const isSize = btn.classList.contains("size-btn");
-                const dropdown = isSize ? sizeDropdown : colorDropdown;
+                sizeDropdown.querySelector("ul").innerHTML = "";
 
-                dropdown.querySelector("ul").innerHTML = "";
-
-                const options = isSize ? productData.sizes : productData.colors;
-                const currentSelection = isSize ? savedItem.selectedSize : savedItem.selectedColor;
-
-                // Build list dynamically
-                options.forEach((opt) => {
+                productData.sizes.forEach(size => {
                     const li = document.createElement("li");
-                    li.textContent = opt;
-
-                    if (opt === currentSelection) li.classList.add("selected");
-                    dropdown.querySelector("ul").appendChild(li);
+                    li.textContent = size;
+                    if (size === savedItem.selectedSize) li.classList.add("selected");
+                    sizeDropdown.querySelector("ul").appendChild(li);
                 });
 
-                [sizeDropdown, colorDropdown].forEach((d) => (d.style.display = "none"));
+                const rect = btn.getBoundingClientRect();
+                sizeDropdown.style.display = "block";
+                sizeDropdown.style.left = `${rect.left + rect.width / 2 - 75}px`;
+                sizeDropdown.style.top = `${rect.bottom + window.scrollY + 10}px`;
 
-                // Position dropdown
-                const btnRect = btn.getBoundingClientRect();
-                dropdown.style.display = "block";
-                dropdown.style.opacity = "0";
-                dropdown.style.left = "0px";
-                dropdown.style.top = "0px";
-
-                const ddRect = dropdown.getBoundingClientRect();
-                const preferredLeft = btnRect.left + btnRect.width / 2 - ddRect.width / 2;
-                let left = Math.max(8, preferredLeft);
-                if (left + ddRect.width > window.innerWidth - 8) {
-                    left = window.innerWidth - ddRect.width - 8;
-                }
-
-                const top = btnRect.bottom + window.scrollY + 8;
-                dropdown.style.left = `${left}px`;
-                dropdown.style.top = `${top}px`;
-                dropdown.style.opacity = "";
-                dropdown.setAttribute("data-for", btn.dataset.index);
-                dropdown.setAttribute("data-type", isSize ? "size" : "color");
+                sizeDropdown.setAttribute("data-for", index);
             });
         });
-    }
 
-    // Handle selections (color + size)
-    [sizeDropdown, colorDropdown].forEach((dropdown) => {
-        dropdown.addEventListener("click", (e) => {
-            const item = e.target;
-            if (item.tagName.toLowerCase() !== "li") return;
+        sizeDropdown.addEventListener("click", (e) => {
+            if (e.target.tagName !== "LI") return;
 
-            const chosen = item.textContent.trim();
-            const type = dropdown.getAttribute("data-type");
-            const index = parseInt(dropdown.getAttribute("data-for"));
+            const index = parseInt(sizeDropdown.getAttribute("data-for"));
+            const selected = e.target.textContent.trim();
 
-            dropdown.querySelectorAll("li").forEach(li => li.classList.remove("selected"));
-            item.classList.add("selected");
-
-            if (type === "size") savedItems[index].selectedSize = chosen;
-            if (type === "color") savedItems[index].selectedColor = chosen;
-
+            savedItems[index].selectedSize = selected;
             saveToLocal();
 
-            const span = document.querySelector(
-                `.${type}-btn[data-index="${index}"] .${type}-value`
-            );
-            if (span) span.textContent = chosen;
+            document.querySelector(`.size-action-btn[data-index="${index}"] .size-value`).textContent = selected;
 
-            dropdown.style.display = "none";
+            sizeDropdown.style.display = "none";
         });
-    });
 
-    // Close dropdowns
-    document.addEventListener("click", (e) => {
-        if (!sizeDropdown.contains(e.target) && !colorDropdown.contains(e.target)) {
+        // COLOR SWATCHES CLICK
+        document.querySelectorAll(".swatch").forEach(swatch => {
+            swatch.addEventListener("click", () => {
+                const index = parseInt(swatch.dataset.index);
+                const colorName = swatch.dataset.color;
+
+                savedItems[index].selectedColor = colorName;
+                saveToLocal();
+
+                document.querySelectorAll(`.swatch[data-index="${index}"]`)
+                    .forEach(s => s.classList.remove("selected"));
+
+                swatch.classList.add("selected");
+            });
+        });
+
+        document.addEventListener("click", () => {
             sizeDropdown.style.display = "none";
-            colorDropdown.style.display = "none";
-        }
-    });
-
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-            sizeDropdown.style.display = "none";
-            colorDropdown.style.display = "none";
-        }
-    });
-
-    window.addEventListener("resize", () => {
-        sizeDropdown.style.display = "none";
-        colorDropdown.style.display = "none";
-    });
+        });
+    }
 
     renderList();
 });
