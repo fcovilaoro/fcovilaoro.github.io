@@ -177,7 +177,8 @@ main {
     position: absolute;
     display: none;
     width: 150px;
-    background: #2f2f2fce;
+    background: #4c4c4cce;
+    backdrop-filter: blur(8px);
     color: white;
     border-radius: 12px;
     box-shadow: 0 8px 30px #00000059;
@@ -207,7 +208,7 @@ main {
 
 .size-dropdown-list li:hover {
     background: rgba(255, 255, 255, 0.16);
-    border-radius: 6px;
+    border-radius: 10px;
 }
 
 @media (min-width: 1024px) {

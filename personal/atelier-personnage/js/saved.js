@@ -40,11 +40,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 saveToLocal();
 
-                const swatchesHTML = product.colors.map(color => {
-                    const cssColor = colorMap[color] || color;
-                    const selected = item.selectedColor === color ? "selected" : "";
-                    return `<div class="swatch ${selected}" style="background:${cssColor};" data-color="${color}" data-index="${index}"></div>`;
-                }).join("");
+                const swatchesHTML = product.colors
+                    .map(color => {
+                        const cssColor = colorMap[color] || color;
+                        const selected = item.selectedColor === color ? "selected" : "";
+                        return `
+                            <div class="swatch ${selected}" 
+                                 style="background:${cssColor};" 
+                                 data-color="${color}" 
+                                 data-index="${index}">
+                            </div>`;
+                    })
+                    .join("");
 
                 return `
                     <div class="saved-card">
@@ -95,11 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const item = savedItems[index];
                 const product = products.find(p => p.name === item.name);
 
+                // ⭐ If no size selected → open dropdown and DO NOT close it
                 if (!item.selectedSize) {
                     const sizeBtn = document.querySelector(`.size-action-btn[data-index="${index}"]`);
-                    sizeBtn.style.borderColor = "red";
-                    setTimeout(() => sizeBtn.style.borderColor = "black", 900);
-                    sizeBtn.click();
+                    openSizeDropdown(sizeBtn, index);
                     return;
                 }
 
@@ -128,23 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".size-action-btn").forEach(btn => {
             btn.addEventListener("click", e => {
                 e.stopPropagation();
-
                 const index = btn.dataset.index;
-                const item = savedItems[index];
-                const product = products.find(p => p.name === item.name);
-
-                sizeDropdown.querySelector("ul").innerHTML = product.sizes
-                    .map(size => `<li>${size}</li>`)
-                    .join("");
-
-                const rect = btn.getBoundingClientRect();
-                sizeDropdown.style.left = `${rect.left + rect.width / 2 - 75}px`;
-                sizeDropdown.style.top = `${rect.bottom + window.scrollY + 10}px`;
-                sizeDropdown.style.display = "block";
-
-                setTimeout(() => sizeDropdown.classList.add("open"), 10);
-
-                sizeDropdown.setAttribute("data-for", index);
+                openSizeDropdown(btn, index);
             });
         });
 
@@ -178,10 +169,37 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        document.addEventListener("click", () => {
-            sizeDropdown.classList.remove("open");
-            setTimeout(() => (sizeDropdown.style.display = "none"), 180);
+        // ⭐ FIX: dropdown should only close when clicking OUTSIDE AND not during Move to Bag
+        document.addEventListener("click", e => {
+            const clickedMove = e.target.classList.contains("move-btn");
+            if (clickedMove) return; // do NOT close dropdown when clicking Move to Bag
+
+            const clickedInsideDropdown = sizeDropdown.contains(e.target);
+            const clickedSizeBtn = e.target.closest(".size-action-btn");
+
+            if (!clickedInsideDropdown && !clickedSizeBtn) {
+                sizeDropdown.classList.remove("open");
+                setTimeout(() => (sizeDropdown.style.display = "none"), 180);
+            }
         });
+    }
+
+    function openSizeDropdown(btn, index) {
+        const item = savedItems[index];
+        const product = products.find(p => p.name === item.name);
+
+        sizeDropdown.querySelector("ul").innerHTML = product.sizes
+            .map(size => `<li>${size}</li>`)
+            .join("");
+
+        const rect = btn.getBoundingClientRect();
+        sizeDropdown.style.left = `${rect.left + rect.width / 2 - 75}px`;
+        sizeDropdown.style.top = `${rect.bottom + window.scrollY + 10}px`;
+        sizeDropdown.style.display = "block";
+
+        setTimeout(() => sizeDropdown.classList.add("open"), 10);
+
+        sizeDropdown.setAttribute("data-for", index);
     }
 
     renderList();

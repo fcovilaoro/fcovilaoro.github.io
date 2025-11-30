@@ -80,7 +80,7 @@
 }
 
 .empty-state {
-    grid-column: 1 / -1; /* span both columns */
+    grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -141,39 +141,40 @@
 
 .promo-code {
     width: 100%;
-    margin: 1.5rem;
     display: flex;
-    position: relative;
+    align-items: center;
+    margin: 1.5rem 0;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    height: 52px; 
 }
 
 #promo-input {
-    width: 100%; 
-    margin-left: 0;
-    padding: 1rem 6rem 1rem 1rem;
-    border: 1px solid #ddd;
+    flex: 1;
+    height: 100%;
+    border: none;
+    padding: 0 1rem;
     font-size: 0.95rem;
     outline: none;
     box-sizing: border-box;
 }
 
 #apply-promo {
-    position: absolute;
-    right: 20px;
-    top: 6px;
-    bottom: 6px;
-    padding: 0 2rem;
+    height: 100%;
     border: none;
+    padding: 0 1.5rem;
     background: #f2f2f2;
     color: black;
     font-weight: 600;
     font-size: 0.85rem;
     cursor: pointer;
+    border-left: 1px solid #ddd;
     transition: background 0.3s;
 }
 
 #apply-promo:hover {
-    background: black;
-    color: white;
+    background: #e6e6e6;
+    color: black;
 }
 
 #apple-pay-btn {
@@ -265,7 +266,7 @@
         width: 100px;
     }
 
-     .saved-button {
+    .saved-button {
         background: #000;
         color: #fff;
         border-color: #000;
@@ -279,6 +280,12 @@
         margin-top: -10px;
     }
 
+    /* mobile promo bar size */
+    .promo-code {
+        height: 48px;
+    }
+
     #apply-promo {
-    right: 28px;
+        padding: 0 1.2rem;
+    }
 }
