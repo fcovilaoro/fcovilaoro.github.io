@@ -1,10 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    // --- FIX: Stop slider clicks from breaking item navigation ---
+    document.querySelectorAll(".image-slider, .image-slider *").forEach(el => {
+        el.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+    });
+
+    // --- PRODUCT SAVE BUTTON LOGIC ---
     const saveButtons = document.querySelectorAll(".product-item .button");
 
-    // --- SAVE BUTTON LOGIC ---
     saveButtons.forEach((button) => {
         button.addEventListener("click", (e) => {
             e.preventDefault();
+            e.stopPropagation();
 
             const item = button.closest(".product-item");
             const name = item.querySelector("h3").textContent;
@@ -25,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 button.querySelector("i").classList.replace("fa-solid", "fa-regular");
             }
 
-            // --- UPDATE DOT IF HEADER IS LOADED ---
+            // Update bookmark dot
             const bookmarkDot = document.querySelector(".bookmark-dot");
             if (bookmarkDot) {
                 const updated = JSON.parse(localStorage.getItem("savedProducts")) || [];
@@ -36,9 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- SLIDER LOGIC ---
     document.querySelectorAll(".image-slider").forEach((slider) => {
+
         const images = slider.querySelectorAll("img");
 
-        // Create .image-slider-inner if missing
+        // Create .image-slider-inner container if needed
         let inner = slider.querySelector(".image-slider-inner");
         if (!inner) {
             inner = document.createElement("div");
@@ -47,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
             slider.prepend(inner);
         }
 
-        // --- CREATE INDICATORS ---
+        // --- INDICATORS ---
         const indicatorContainer =
             slider.querySelector(".slider-indicators") ||
             (() => {
@@ -80,21 +90,36 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         };
 
+        // --- ARROWS ---
         const leftArrow = slider.querySelector(".arrow.left");
         const rightArrow = slider.querySelector(".arrow.right");
 
         if (leftArrow && rightArrow) {
-            leftArrow.addEventListener("click", () => {
+
+            leftArrow.addEventListener("click", (e) => {
+                e.stopPropagation();
+                e.preventDefault();
                 current = (current - 1 + images.length) % images.length;
                 updateSlider();
             });
-            rightArrow.addEventListener("click", () => {
+
+            rightArrow.addEventListener("click", (e) => {
+                e.stopPropagation();
+                e.preventDefault();
                 current = (current + 1) % images.length;
                 updateSlider();
             });
+
+            // Extra: fully block arrow bubbling
+            slider.querySelectorAll(".arrow").forEach((arrow) => {
+                arrow.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+            });
         }
 
-        // --- TOUCH LOGIC WITH LOOPING ---
+        // --- TOUCH DRAG ---
         slider.addEventListener("touchstart", (e) => {
             if (window.innerWidth > 1024) return;
 
@@ -127,16 +152,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         slider.addEventListener("touchend", (e) => {
             if (!isDragging || window.innerWidth > 1024) return;
+
             isDragging = false;
 
             const dx = e.changedTouches[0].clientX - startX;
             const threshold = slider.offsetWidth * 0.2;
 
-            // --- LOOPING SWIPE ---
             if (dx < -threshold) {
-                current = (current + 1) % images.length; // NEXT with loop
+                current = (current + 1) % images.length;
             } else if (dx > threshold) {
-                current = (current - 1 + images.length) % images.length; // PREV with loop
+                current = (current - 1 + images.length) % images.length;
             }
 
             updateSlider();

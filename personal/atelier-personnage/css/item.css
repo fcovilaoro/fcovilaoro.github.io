@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap');
+
+.product-description {
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-top: 15px;
+  letter-spacing: 0.3px;
+}
+
+.item-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* MAIN IMAGE */
+.item-gallery {
+  width: 100%;
+}
+
+#main-image {
+  width: 100%;
+  border-radius: 6px;
+}
+
+/* THUMBNAILS */
+.thumbnail-container {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+}
+
+.thumbnail-container img {
+  width: 65px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.2s ease;
+}
+
+.thumbnail-container img.active {
+  opacity: 1;
+  border: 2px solid black;
+}
+
+/* PRODUCT INFO */
+.item-info h1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.item-info h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sizes button {
+  padding: 8px 16px;
+  border: 1px solid black;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sizes button.active {
+  background: black;
+  color: white;
+}
+
+.add-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.save-btn {
+  width: 100%;
+  padding: 15px;
+  background: #e6e6e6;
+  border: none;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.description {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* DESKTOP RESPONSIVE */
+@media (min-width: 900px) {
+  .item-page {
+    flex-direction: row;
+    padding: 50px 80px;
+  }
+
+  .item-gallery {
+    width: 30%;
+  }
+
+  .item-info {
+    width: 30%;
+    padding-left: 40px;
+  }
+}

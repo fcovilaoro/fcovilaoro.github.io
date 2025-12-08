@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Product | Atelier Personnage</title>
+
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/item.css" />
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    </head>
+
+    <body>
+        <div id="header-placeholder"></div>
+
+        <main class="item-page">
+            <!-- LEFT: vertical thumbnails column -->
+            <aside class="thumbnails-col" id="thumbnails-col" aria-hidden="false">
+                <div class="thumbnail-container" id="thumbnail-container"></div>
+            </aside>
+
+            <!-- CENTER: big image + arrows -->
+            <section class="gallery-col">
+                <div class="gallery-wrapper">
+                    <button class="arrow left" id="arrow-left" aria-label="Previous image">&#10094;</button>
+
+                    <div class="main-image-wrap">
+                        <img id="main-image" src="" alt="Product Image" />
+                    </div>
+
+                    <button class="arrow right" id="arrow-right" aria-label="Next image">&#10095;</button>
+
+                    <div class="slider-indicators" id="slider-indicators" aria-hidden="true"></div>
+                </div>
+            </section>
+
+            <!-- RIGHT: product info -->
+            <aside class="info-col">
+                <div class="item-info-inner">
+                    <h4 class="category" id="product-category"></h4>
+                    <h1 id="product-name"></h1>
+                    <h2 id="product-price"></h2>
+
+                    <div class="color-block">
+                        <div class="color-label">Color</div>
+                        <div class="color-swatches" id="color-swatches"></div>
+                    </div>
+
+                    <div class="size-block">
+                        <div class="size-label">Size</div>
+                        <div id="size-options" class="sizes"></div>
+                    </div>
+
+                    <button id="add-to-bag" class="add-btn">Add to Bag</button>
+                    <button id="save-item" class="save-btn"><i class="fa-regular fa-heart"></i> Save</button>
+
+                    <div class="description-block">
+                        <p id="product-description" class="description"></p>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <div id="footer-placeholder"></div>
+
+        <script src="js/products.js"></script>
+        <script src="js/item.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                fetch("partials/header.html")
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById("header-placeholder").innerHTML = html;
+                        const script = document.createElement("script");
+                        script.src = "js/header.js";
+                        document.body.appendChild(script);
+                    });
+
+                fetch("partials/footer.html")
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById("footer-placeholder").innerHTML = html;
+                        const script = document.createElement("script");
+                        script.src = "js/footer.js";
+                        document.body.appendChild(script);
+                    });
+            });
+        </script>
+    </body>
+</html>
